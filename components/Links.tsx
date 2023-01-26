@@ -1,13 +1,13 @@
 import { NavigationLink } from '@/services/content'
 import { Entry } from 'contentful'
 import Link from 'next/link'
-import { FunctionComponent } from 'react'
+import { Fragment, FunctionComponent } from 'react'
 
 export const Links: FunctionComponent<{
   links: Entry<NavigationLink>[]
 }> = ({ links }) => {
   return <>
-    {links.map(link => <>
+    {links.map((link, i) => <Fragment key={i}>
       {link.fields.link
         ? <Link href={link.fields.link}
           {...link.fields.external && {
@@ -19,6 +19,6 @@ export const Links: FunctionComponent<{
       {link.fields.subLinks && <nav>
         <Links links={link.fields.subLinks} />  
       </nav>}
-    </>)}
+    </Fragment>)}
   </>
 }

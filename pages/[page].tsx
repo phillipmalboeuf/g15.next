@@ -6,6 +6,7 @@ import { Entry } from 'contentful'
 import { ContentService, Navigations, Page } from '@/services/content'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { Contenu } from '@/components/Contenu'
 
 interface Props {
   id: string
@@ -23,7 +24,7 @@ const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
       </Head>
       <Header nav={navigation.header} />
       <main className={styles.main}>
-        <h1>{page.fields.titre}</h1>
+        <Contenu contenu={page.fields.contenu} />
       </main>
       <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
     </>

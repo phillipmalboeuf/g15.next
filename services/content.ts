@@ -1,8 +1,12 @@
 
 import type { Asset, Entry, EntryCollection } from 'contentful'
 import type { Document } from '@contentful/rich-text-types'
-import { contentful } from '../clients/contentful'
+import { createClient } from 'contentful'
 
+export const contentful = createClient({
+  space: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+})
 
 export interface NavigationLink {
   titre: string
@@ -23,9 +27,7 @@ export interface Page {
   titre: string
   id: string
   description: string
-  body: Document
-  showDiscount?: boolean
-  hidePopup?: boolean
+  contenu: Entry<any>[]
 }
 
 export interface ArticleCategory {
@@ -41,7 +43,7 @@ export interface Article {
   category: string
   excerpt: string
   publishedAt: Date
-  body: Document
+  text: Document
 }
 
 export interface Navigations {

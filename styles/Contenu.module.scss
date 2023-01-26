@@ -1,0 +1,19 @@
+.text {
+  padding: var(--gap);
+  
+  &.Hero {
+    min-height: 100vh;
+  }
+
+  &.Big {
+    
+  }
+
+  &.Small {
+    
+  }
+}
+
+.membres {
+  padding: var(--gap);
+}
