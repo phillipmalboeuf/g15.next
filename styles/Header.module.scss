@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  padding: var(--gap);
+
+  nav {
+    flex: 1;
+    display: flex;
+    gap: var(--gap);
+    justify-content: center;
+  }
+}

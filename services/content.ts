@@ -10,13 +10,12 @@ export interface NavigationLink {
   external?: boolean
   emphasize: boolean
   subLinks: Entry<NavigationLink>[]
-  photo?: Asset
-  ctaButton?: string
+  // photo?: Asset
 }
 
 export interface Navigation {
   titre: string
-  identifier: string
+  id: string
   links: Entry<NavigationLink>[]
 }
 
@@ -46,10 +45,13 @@ export interface Article {
 }
 
 export interface Navigations {
-  navs: Entry<Navigation>[]
+  header: Entry<Navigation>
+  footer: Entry<Navigation>
+  social: Entry<Navigation>
+  legal: Entry<Navigation>
 }
 
-const limit = 9
+const limit = 12
 
 export const ContentService = {
   navigation: async (locale: string): Promise<Navigations> => {
@@ -58,7 +60,10 @@ export const ContentService = {
       // contentful.getEntries<NavigationLink>({ content_type: 'navigationLink', locale, include: 2 })
     ])
     return {
-      navs: navs.items
+      header: navs.items.find(nav => nav.fields.id === 'header'),
+      footer: navs.items.find(nav => nav.fields.id === 'footer'),
+      social: navs.items.find(nav => nav.fields.id === 'social'),
+      legal: navs.items.find(nav => nav.fields.id === 'legal'),
     }
   },
   page: async (id: string, locale: string) => {

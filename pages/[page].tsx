@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { FunctionComponent } from 'react'
 import Head from 'next/head'
 import styles from '@/styles/Page.module.scss'
@@ -8,16 +8,17 @@ import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 
 interface Props {
+  id: string
   title: string
   page: Entry<Page>
   navigation?: Navigations
 }
 
-const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
+const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{page.fields.titre} – {title}</title>
         <meta name="description" content={page.fields.description} />
       </Head>
       <Header nav={navigation.header} />
@@ -29,9 +30,9 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getStaticProps: GetStaticProps<Props, { page: string }> = async (context) => {
   const [page, navigation] = await Promise.all([
-    ContentService.page('accueil', context.locale),
+    ContentService.page(context.params.page, context.locale),
     ContentService.navigation(context.locale),
   ])
 
@@ -43,6 +44,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   return {
     props: {
+      id: context.params.page,
       title: 'g15plus.quebec',
       page,
       navigation,
@@ -50,5 +52,11 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   }
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: ['/notre-vision'],
+    fallback: true
+  }
+}
 
-export default Home
+export default Page
