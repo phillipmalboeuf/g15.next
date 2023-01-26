@@ -1,9 +1,9 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next'
 import { FunctionComponent } from 'react'
 import Head from 'next/head'
 import styles from '@/styles/Page.module.scss'
 import { Entry } from 'contentful'
-import { ContentService, Navigations, Page } from '@/services/content'
+import { ContentService, getPageProps, Navigations, Page } from '@/services/content'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Contenu } from '@/components/Contenu'
@@ -17,7 +17,7 @@ interface Props {
 
 const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
   return (
-    <>
+    page && <>
       <Head>
         <title>{page.fields.titre} – {title}</title>
         <meta name="description" content={page.fields.description} />
@@ -32,25 +32,7 @@ const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
 }
 
 export const getStaticProps: GetStaticProps<Props, { page: string }> = async (context) => {
-  const [page, navigation] = await Promise.all([
-    ContentService.page(context.params.page, context.locale),
-    ContentService.navigation(context.locale),
-  ])
-
-  if (!page) {
-    return {
-      notFound: true
-    }
-  }
-
-  return {
-    props: {
-      id: context.params.page,
-      title: 'g15plus.quebec',
-      page,
-      navigation,
-    }
-  }
+  return await getPageProps(context, context.params.page)
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

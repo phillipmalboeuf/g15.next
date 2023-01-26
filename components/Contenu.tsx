@@ -5,9 +5,11 @@ import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types'
 import Link from 'next/link'
 import { FunctionComponent } from 'react'
 import { Links } from './Links'
-import { NavigationLink } from '@/services/content'
+import { Articles as ArticlesList } from './Articles'
+import { Article, NavigationLink } from '@/services/content'
 
 import styles from '@/styles/Contenu.module.scss'
+import { useRouter } from 'next/router'
 
 interface Text {
   titre: string
@@ -17,10 +19,15 @@ interface Text {
   links?: Entry<NavigationLink>[]
 }
 
+interface Texts {
+  titre: string
+  id: string
+  texts?: Entry<Text>[]
+}
+
 interface Membres {
   titre: string
   id: string
-  layout: string
   membres?: Entry<{
     nom: string
     titre: string
@@ -30,20 +37,29 @@ interface Membres {
   }>[]
 }
 
+interface Articles {
+  titre: string
+  id: string
+  tag?: string
+  articles: Entry<Article>[]
+}
+
 export function renderText(text: Document) {
   return documentToReactComponents(text)
 }
 
 export const Contenu: FunctionComponent<{
-  contenu: Entry<Text | Membres>[]
+  contenu: Entry<any>[]
 }> = ({ contenu }) => {
 
   return <>
     {contenu?.map((item, i) => <section id={item.fields.id} key={i}
-      className={[styles[item.sys.contentType.sys.id], styles[item.fields.layout]].join(' ')}>
+      className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout]].join(' ')}>
       {{
         'text': <Text item={item as Entry<Text>} />,
+        'texts': <Texts item={item as Entry<Texts>} />,
         'membres': <Membres item={item as Entry<Membres>} />,
+        'articles': <Articles item={item as Entry<Articles>} />,
       }[item.sys.contentType.sys.id]}
     </section>)}
   </>
@@ -58,6 +74,18 @@ export const Text: FunctionComponent<{
     {item.fields.links && <nav>
       <Links links={item.fields.links} />  
     </nav>}
+  </>
+}
+
+export const Texts: FunctionComponent<{
+  item: Entry<Texts>
+}> = ({ item }) => {
+  return  <>
+    {item.fields.titre && <h2>{item.fields.titre}</h2>}
+    {item.fields.texts && item.fields.texts.map((text, i) => <article id={text.fields.id} key={i}>
+      <hr />
+      <Text item={text} />
+    </article>)}
   </>
 }
 
@@ -76,5 +104,17 @@ export const Membres: FunctionComponent<{
         >{membre.fields.entreprise}</Link>
       </li>)}
     </ul>}
+  </>
+}
+
+export const Articles: FunctionComponent<{
+  item: Entry<Articles>
+}> = ({ item }) => {
+  const { locale } = useRouter()
+
+  return  <>
+    {item.fields.titre && <h2>{item.fields.titre}</h2>}
+    <ArticlesList tag={item.fields.tag} articles={item.fields.articles} />
+    <Link href={`/articles/${item.fields.tag}`}>Voir tous</Link>
   </>
 }

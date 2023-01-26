@@ -1,8 +1,14 @@
-.text {
+.text,
+.membres,
+.texts,
+.articles {
   padding: var(--gap);
+}
+
+
+.text {
   
   &.Hero {
-    min-height: 100vh;
   }
 
   &.Big {
@@ -15,5 +21,13 @@
 }
 
 .membres {
-  padding: var(--gap);
+
+}
+
+.texts {
+
+}
+
+.articles {
+  
 }

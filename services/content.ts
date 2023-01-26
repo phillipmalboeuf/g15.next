@@ -1,12 +1,9 @@
 
 import type { Asset, Entry, EntryCollection } from 'contentful'
 import type { Document } from '@contentful/rich-text-types'
-import { createClient } from 'contentful'
+import { contentful } from '@/clients/contentful'
+import { GetStaticPropsContext } from 'next'
 
-export const contentful = createClient({
-  space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-})
 
 export interface NavigationLink {
   titre: string
@@ -30,17 +27,17 @@ export interface Page {
   contenu: Entry<any>[]
 }
 
-export interface ArticleCategory {
-  titre: string
-  id: string
-  description: string
-  photo: Asset
-}
+// export interface ArticleCategory {
+//   titre: string
+//   id: string
+//   description: string
+//   photo: Asset
+// }
 
 export interface Article {
   titre: string
   id: string
-  category: string
+  tags: string[]
   excerpt: string
   publishedAt: Date
   text: Document
@@ -53,7 +50,7 @@ export interface Navigations {
   legal: Entry<Navigation>
 }
 
-const limit = 12
+const limit = 42
 
 export const ContentService = {
   navigation: async (locale: string): Promise<Navigations> => {
@@ -71,7 +68,6 @@ export const ContentService = {
   page: async (id: string, locale: string) => {
     const pages = await contentful.getEntries<Page>({ content_type: 'page', locale, include: 2,
       'fields.id': id })
-      console.log(pages)
     return pages.items[0]
   },
   article: async (id: string, locale: string) => {
@@ -79,23 +75,49 @@ export const ContentService = {
       'fields.id': id })
     return articles.items[0]
   },
-  articles: async (category: string, page: string, sort: string, locale: string) => {
+  articles: async (tag: string, page: number, sort: string, locale: string, limitOverride?: number) => {
     const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 3,
-      'fields.category': category,
+      'fields.tags': tag,
       'fields.publishedAt[lte]': new Date().toISOString(),
-      limit,
-      skip: page ? parseInt(page) * limit : 0,
+      limit: (limitOverride || limit),
+      skip: page ? page * (limitOverride || limit) : 0,
       order: {
         'newest': '-fields.publishedAt',
         'oldest': 'fields.publishedAt'
       }[sort as string || 'newest'] })
     return articles
   },
-  categories: async (locale: string) => {
-    const categories = await contentful.getEntries<ArticleCategory>({ content_type: 'articleCategory', locale })
-    return categories.items.reduce((reduction, category)=> {
-      reduction[category.fields.id] = category
-      return reduction
-    }, {} as {[identifier: string]: Entry<ArticleCategory>})
-  },
+  // categories: async (locale: string) => {
+  //   const categories = await contentful.getEntries<ArticleCategory>({ content_type: 'articleCategory', locale })
+  //   return categories.items.reduce((reduction, category)=> {
+  //     reduction[category.fields.id] = category
+  //     return reduction
+  //   }, {} as {[identifier: string]: Entry<ArticleCategory>})
+  // },
+}
+
+export const getPageProps = async (context: GetStaticPropsContext, id: string) => {
+  const [page, navigation] = await Promise.all([
+    ContentService.page(id, context.locale),
+    ContentService.navigation(context.locale),
+  ])
+
+  if (page?.fields.contenu) {
+    for (let index = 0; index < page.fields.contenu.length; index++) {
+      const item = page.fields.contenu[index]
+      if (item.sys.contentType.sys.id === 'articles') {
+        item.fields.articles = (await ContentService.articles(item.fields.tag, 0, 'newest', context.locale, 4)).items
+      }
+    }
+  }
+  
+  return {
+    ...!page && { notFound: true },
+    props: {
+      id,
+      title: 'g15plus.quebec',
+      page,
+      navigation,
+    }
+  }
 }
