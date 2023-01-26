@@ -10,6 +10,7 @@ import { Article, NavigationLink } from '@/services/content'
 
 import styles from '@/styles/Contenu.module.scss'
 import { useRouter } from 'next/router'
+import { Media } from './Media'
 
 interface Text {
   titre: string
@@ -96,6 +97,9 @@ export const Membres: FunctionComponent<{
     {item.fields.titre && <h2>{item.fields.titre}</h2>}
     {item.fields.membres && <ul>
       {item.fields.membres.map((membre, i) => <li key={i}>
+        {membre.fields.photo && <figure>
+          <Media media={membre.fields.photo} ar={1} />
+        </figure>}
         <strong>{membre.fields.nom}</strong><br />
         <em>{membre.fields.titre}</em><br />
         <Link href={membre.fields.entrepriseLink}

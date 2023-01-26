@@ -26,7 +26,7 @@ const Article: FunctionComponent<Props> = ({ title, tag, article, navigation }) 
       <Header nav={navigation.header} />
       <main className={styles.article}>
         <h1>{article.fields.titre}</h1>
-        <nav>{article.fields.tags?.map(tag => <Link href={`/articles/${tag}`}>#{tag}</Link>)}</nav>
+        <nav>{article.fields.tags?.map(tag => <Link key={tag} href={`/articles/${tag}`}>#{tag}</Link>)}</nav>
         {article.fields.text && renderText(article.fields.text)}
       </main>
       <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />

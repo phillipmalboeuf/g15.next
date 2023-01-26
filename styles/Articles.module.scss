@@ -2,6 +2,24 @@
   padding: var(--gap);
 }
 
+.list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+
+  li {
+    width: calc(100% / 4);
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  figure {
+    margin: var(--gap) 0;
+  }
+}
+
 .article {
   padding: var(--gap);
 }

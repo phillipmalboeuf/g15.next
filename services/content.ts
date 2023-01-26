@@ -41,6 +41,7 @@ export interface Article {
   excerpt: string
   publishedAt: Date
   text: Document
+  photo: Asset
 }
 
 export interface Navigations {

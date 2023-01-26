@@ -22,6 +22,14 @@
 
 .membres {
 
+  figure {
+    margin: var(--gap) 0;
+    width: calc(var(--gap) * 4);
+
+    img {
+      border-radius: 50%;
+    }
+  }
 }
 
 .texts {
