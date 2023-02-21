@@ -16,7 +16,7 @@ export const Header: FunctionComponent<{
       <div className={styles.content}>
         <Link href='/'>
           <Image
-            height={40}
+            height={48}
             width={40}
             alt='g15 plus'
             src={logo}

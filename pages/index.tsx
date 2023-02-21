@@ -126,7 +126,7 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
             justifyContent: 'center',
             height: 690,
             width: '100%',
-            backgroundColor: '#3EAF59',
+            // backgroundColor: '#3EAF59',
           }}
         >
           <Center>

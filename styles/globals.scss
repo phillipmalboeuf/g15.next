@@ -1,7 +1,5 @@
 :root {
   --gap: 10px;
-  background-color: '#FBFBFB';
-  font-size: 16px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,47 +20,46 @@ body {
   padding: 0;
   margin: 0;
 
-  font-family: sans-serif;
+  background-color: '#FBFBFB';
 }
 
 body {
-  font-family: 'PPNeueMontreal-Regular';
   font-size: 16px;
 }
 
-h1 {
+main[role="main"] {
+  font-family: var(--font-montreal);
+}
+
+h1, h2, h3, h4, h5, h6, p {
   margin: 0;
-  font-family: 'PPEditorialNew-Regular';
+}
+
+h1 {
+  font-family: var(--font-editorial);
   font-weight: 400;
   font-size: 72px;
   line-height: 115%;
   max-width: 75%;
-  //background-color: yellow;
 }
 
 h2 {
-  margin: 0;
-  font-family: 'PPEditorialNew-Bold';
+  font-family: var(--font-editorial);
   font-size: 26px;
-  //background-color: yellow;
 }
 
 h3 {
-  margin: 0;
-  //font-family: 'PPNeueMontreal-Medium';
   font-size: 48px;
   line-height: 120%;
+  font-weight: 500;
   max-width: 80%;
-  //background-color: yellow;
 }
 
 h4 {
-  margin: 0;
-  //font-family: 'PPNeueMontreal-Medium';
   font-size: 28px;
   line-height: 120%;
+  font-weight: 500;
   max-width: 80%;
-  //background-color: yellow;
 }
 
 h5 {
@@ -71,7 +68,6 @@ h5 {
 }
 
 p {
-  margin: 0;
   font-size: 28px;
   line-height: 36px;
 }
