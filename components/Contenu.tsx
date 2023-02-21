@@ -54,7 +54,7 @@ export const Contenu: FunctionComponent<{
 }> = ({ contenu }) => {
 
   return (
-    <div style={{display: 'flex', flexDirection: 'column', backgroundColor: 'coral', justifyContent: 'center', alignItems: 'center'}}>
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
       {contenu?.map((item, i) =>
         <section 
           id={item.fields.id}

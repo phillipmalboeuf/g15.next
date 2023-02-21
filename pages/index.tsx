@@ -107,7 +107,6 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
             height: 690,
             width: '100%',
             paddingTop: 56,
-            backgroundColor: '#FFFBE5',
           }}
         >
           <Center>
@@ -153,7 +152,6 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#3EAF59',
               }}
             >
               <h4 style={{display: 'flex', flex: 1, paddingRight: 24}}>Un Québec qui place l’économie au service de la qualité de vie de sa population</h4>
@@ -165,7 +163,6 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   height: '100%',
-                  backgroundColor: 'orange',
                 }}
               >
               </div>
@@ -176,7 +173,6 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                backgroundColor: '#3EAF59',
               }}
             >
               <h4 style={{display: 'flex', flex: 1, paddingRight: 24}}>Un Québec qui place l’économie au service de la qualité de vie de sa population</h4>
@@ -188,7 +184,6 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
                   alignItems: 'center',
                   justifyContent: 'center',
                   height: '100%',
-                  backgroundColor: 'orange',
                 }}
               >
               </div>
@@ -204,11 +199,10 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
             justifyContent: 'center',
             height: 690,
             width: '100%',
-            backgroundColor: '#3EAF59',
-            backgroundImage: `url(${groupephoto})`,
+            backgroundImage: `url(${groupephoto.src})`,
           }}
         >
-          <div style={{position:'absolute', zIndex: 0, display: 'flex', flex: 1, height: 690, width: '100%', backgroundColor: '#333', opacity: 0.5}} />
+          <div style={{position:'absolute', zIndex: 0, display: 'flex', flex: 1, height: 690, width: '100%', opacity: 0.5}} />
           <Center>
           <TitleCard label='Qui sommes-nous?' color='#FEFEFE' />
             <h3 style={{fontSize: 32, color: '#FEFEFE'}}>Le collectif G15+ s’appuie sur le dialogue social pour favoriser la transformation de l’économie québécoise vers une société plus solidaire, prospère et verte et placer le bien-être de la population au cœur des politiques publiques. Fondé en mars 2020, il est composé de leaders économiques, syndicaux, sociaux et environnementaux du Québec.</h3>
@@ -223,7 +217,6 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
             //justifyContent: 'center',
             minHeight: 690,
             width: '100%',
-            backgroundColor: '#FFFBE5',
           }}
         >
           <Center>
@@ -285,7 +278,6 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
             justifyContent: 'center',
             minHeight: 690,
             width: '100%',
-            backgroundColor: '#3EAF59',
           }}
         >
           <Center>
@@ -330,7 +322,7 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
           </Center>
         </section>
       </main>
-      {/* <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} /> */}
+      <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
     </>
   )
 }

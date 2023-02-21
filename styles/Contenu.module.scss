@@ -6,7 +6,7 @@
 }
 
 .content {
-  background-color: red;
+  // background-color: red;
   display: flex;
   flex: 1;
   justify-content: center;
@@ -16,7 +16,7 @@
 
 .text {
   display: flex;
-  background-color: rgb(0, 128, 255);
+  // background-color: rgb(0, 128, 255);
   &.Hero {
     display: flex;
     height: 90vh;
@@ -28,7 +28,7 @@
   }
 
   &.Small {
-    background-color: red;
+    // background-color: red;
   }
 }
 
