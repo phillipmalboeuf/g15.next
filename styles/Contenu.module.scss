@@ -5,23 +5,35 @@
   padding: var(--gap);
 }
 
+.content {
+  background-color: red;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
 
 .text {
-  
+  display: flex;
+  background-color: rgb(0, 128, 255);
   &.Hero {
+    display: flex;
+    height: 90vh;
+    width: 1200px;
   }
 
   &.Big {
-    
+    background-color: cadetblue;
   }
 
   &.Small {
-    
+    background-color: red;
   }
 }
 
 .membres {
-
+  background-color: aqua;
   figure {
     margin: var(--gap) 0;
     width: calc(var(--gap) * 4);
@@ -33,9 +45,13 @@
 }
 
 .texts {
-
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  width: 1200px;
+  background-color: rgb(76, 76, 139);
 }
 
 .articles {
-  
+  background-color: blue;
 }

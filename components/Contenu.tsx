@@ -53,41 +53,58 @@ export const Contenu: FunctionComponent<{
   contenu: Entry<any>[]
 }> = ({ contenu }) => {
 
-  return <>
-    {contenu?.map((item, i) => <section id={item.fields.id} key={i}
-      className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout]].join(' ')}>
-      {{
-        'text': <Text item={item as Entry<Text>} />,
-        'texts': <Texts item={item as Entry<Texts>} />,
-        'membres': <Membres item={item as Entry<Membres>} />,
-        'articles': <Articles item={item as Entry<Articles>} />,
-      }[item.sys.contentType.sys.id]}
-    </section>)}
-  </>
+  return (
+    <div style={{display: 'flex', flexDirection: 'column', backgroundColor: 'coral', justifyContent: 'center', alignItems: 'center'}}>
+      {contenu?.map((item, i) =>
+        <section 
+          id={item.fields.id}
+          key={i}
+          className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout]].join(' ')}
+        >
+          {{
+            'text': <Text item={item as Entry<Text>} />,
+            'texts': <Texts item={item as Entry<Texts>} />,
+            'membres': <Membres item={item as Entry<Membres>} />,
+            'articles': <Articles item={item as Entry<Articles>} />,
+          }[item.sys.contentType.sys.id]}
+        </section>
+      )}
+    </div>
+  );
 }
 
 export const Text: FunctionComponent<{
   item: Entry<Text>
 }> = ({ item }) => {
-  return  <>
-    {item.fields.titre && <h2>{item.fields.titre}</h2>}
-    {item.fields.text && renderText(item.fields.text)}
-    {item.fields.links && <nav>
-      <Links links={item.fields.links} />  
-    </nav>}
-  </>
+  return  (
+    <div className={styles.content}>
+      {item.fields.titre && 
+        <h2>{item.fields.titre}</h2>
+      }
+      {item.fields.text && 
+        renderText(item.fields.text)
+      }
+      {item.fields.links && 
+        <nav>
+          <Links links={item.fields.links} />  
+        </nav>
+      }
+    </div>
+  );
 }
 
 export const Texts: FunctionComponent<{
   item: Entry<Texts>
 }> = ({ item }) => {
-  return  <>
-    {item.fields.titre && <h2>{item.fields.titre}</h2>}
-    {item.fields.texts && item.fields.texts.map((text, i) => <article id={text.fields.id} key={i}>
-      <hr />
-      <Text item={text} />
-    </article>)}
-  </>
+  return (
+    <>
+      {item.fields.titre && <h2>{item.fields.titre}</h2>}
+      {item.fields.texts && item.fields.texts.map((text, i) => <article id={text.fields.id} key={i}>
+        <hr />
+        <Text item={text} />
+      </article>)}
+    </>
+  );
 }
 
 export const Membres: FunctionComponent<{
@@ -116,9 +133,11 @@ export const Articles: FunctionComponent<{
 }> = ({ item }) => {
   const { locale } = useRouter()
 
-  return  <>
-    {item.fields.titre && <h2>{item.fields.titre}</h2>}
-    <ArticlesList tag={item.fields.tag} articles={item.fields.articles} />
-    <Link href={`/articles/${item.fields.tag}`}>Voir tous</Link>
-  </>
+  return (
+    <>
+      {item.fields.titre && <h2>{item.fields.titre}</h2>}
+      <ArticlesList tag={item.fields.tag} articles={item.fields.articles} />
+      <Link href={`/articles/${item.fields.tag}`}>Voir tous</Link>
+    </>
+  );
 }

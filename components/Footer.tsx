@@ -11,18 +11,20 @@ export const Footer: FunctionComponent<{
   social: Entry<Navigation>
   legal: Entry<Navigation>
 }> = ({ footer, social, legal }) => {
-  return <footer className={styles.footer}>
-    <h2>{footer.fields.titre}</h2>
-    <nav id={footer.fields.id}>
-      <Links links={footer.fields.links} />
-    </nav>
+  return (
+    <footer className={styles.footer}>
+      <h2>{footer.fields.titre}</h2>
+      <nav id={footer.fields.id}>
+        <Links links={footer.fields.links} />
+      </nav>
 
-    <nav id={social.fields.id}>
-      <Links links={social.fields.links} />
-    </nav>
+      <nav id={social.fields.id}>
+        <Links links={social.fields.links} />
+      </nav>
 
-    <nav id={legal.fields.id}>
-      <Links links={legal.fields.links} />
-    </nav>
-  </footer>
+      <nav id={legal.fields.id}>
+        <Links links={legal.fields.links} />
+      </nav>
+    </footer>
+  );
 }
