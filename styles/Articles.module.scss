@@ -1,25 +1,62 @@
 .articles {
   padding: var(--gap);
+  max-width: var(--max-width);
+  margin: var(--gap) auto 0;
+
+  h1 {
+    text-align: center;
+    width: 100%;
+    max-width: none;
+  }
 }
 
 .list {
   display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--gap) / 3);
   list-style: none;
   padding: 0;
 
   li {
-    width: calc(100% / 4);
+    width: calc((100% / 4) - calc(var(--gap) / 3));
+    border-top: 8px solid var(--highlight-color);
 
     a {
       text-decoration: none;
     }
+
+    h5 {
+      font-family: var(--font-editorial);
+      margin-bottom: 0;
+    }
   }
 
   figure {
-    margin: var(--gap) 0;
+    margin: calc(var(--base) / 2) 0 calc(var(--gap) / 4);
   }
 }
 
 .article {
   padding: var(--gap);
+
+  h1 {
+    padding: var(--gap);
+    text-align: center;
+    margin: 0 auto;
+
+    small {
+      font-size: 1rem;
+      font-family: var(--font-montreal);
+    }
+  }
+
+  nav {
+    padding: var(--gap);
+    text-align: center;
+  }
+
+  article {
+    width: calc(var(--max-width) / 1.5);
+    margin: 0 auto;
+  }
 }

@@ -11,8 +11,6 @@ export const Articles: FunctionComponent<{
   tag: string
   articles: Entry<Article>[]
 }> = ({ tag, articles }) => {
-  const { locale } = useRouter()
-
   return  <>
     {articles && <ol className={styles.list}>
       {articles.map((article, i) => <li key={i}>
@@ -20,10 +18,17 @@ export const Articles: FunctionComponent<{
           <figure>
             <Media media={article.fields.photo} ar={1} />
           </figure>
-          <strong>{article.fields.titre}</strong><br />
-          {article.fields.publishedAt && <small>{new Date(article.fields.publishedAt).toLocaleDateString(locale)}</small>}
+          <h5>{article.fields.titre}</h5>
+          <ArticleDate article={article} />
         </Link>
       </li>)}
     </ol>}
   </>
+}
+
+export const ArticleDate: FunctionComponent<{
+  article: Entry<Article>
+}> = ({ article }) => {
+  const { locale } = useRouter()
+  return article.fields.publishedAt && <small>{new Date(article.fields.publishedAt).toLocaleDateString(locale, { dateStyle: 'long' })}</small>
 }

@@ -2,7 +2,8 @@
 .membres,
 .texts,
 .articles {
-  padding: var(--gap);
+  padding: var(--gap) 0;
+  width: var(--max-width);
 }
 
 .content {
@@ -16,15 +17,51 @@
 .text {
   // display: flex;
 
+  &.background {
+    position: relative;
+
+    h1,
+    h2,
+    div,
+    nav {
+      width: 50%;
+      z-index: 1;
+    }
+
+    figure {
+      position: absolute;
+      z-index: 0;
+      margin: 0;
+
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+
+      img {
+        width: 100vw;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
   &.Hero {
     display: flex;
-    height: 90vh;
-    width: var(--max-width);
+    height: calc(100vh - var(--gap));
+
+    p {
+      font-size: calc(var(--base) * 1.75);
+    }
   }
 
   &.Big {
-    width: var(--max-width);
-    padding: var(--gap)
+    padding: var(--gap);
+
+    p {
+      font-size: calc(var(--base) * 3);
+      font-weight: 500;
+    }
   }
 
   &.Small {
@@ -33,9 +70,32 @@
 }
 
 .membres {
+  font-family: var(--font-editorial);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: var(--max-width);
+    gap: calc(var(--gap) / 2);
+
+    li {
+      width: calc((100% / 4) - calc(var(--gap) / 2));
+
+      h5 {
+        margin-bottom: 0;
+      }
+
+      a {
+        opacity: 0.5;
+      }
+    }
+  }
+
   figure {
-    margin: var(--gap) 0;
-    width: calc(var(--gap) * 4);
+    margin: var(--gap) 0 calc(var(--gap) / 2);
+    width: calc(var(--gap) * 2);
 
     img {
       border-radius: 50%;
@@ -65,7 +125,4 @@
       width: 50%;
     }
   }
-}
-
-.articles {
 }

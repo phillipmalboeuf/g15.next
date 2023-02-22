@@ -7,6 +7,7 @@ import logo from '../public/images/logo.png'
 
 import styles from '@/styles/Header.module.scss'
 import Image from 'next/image'
+import Button from './Button'
 
 export const Header: FunctionComponent<{
   nav: Entry<Navigation>
@@ -25,7 +26,7 @@ export const Header: FunctionComponent<{
         <nav id={nav.fields.id}>
           <Links links={nav.fields.links} />
         </nav>
-        <Link href='https://www.indicateurs.quebec'>Les indicateurs</Link>
+        <Link href='https://www.indicateurs.quebec'><Button label='Les indicateurs' /></Link>
       </div>
     </header>
   );

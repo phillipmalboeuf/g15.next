@@ -19,6 +19,7 @@ interface Text {
   id: string
   layout: string
   text: Document
+  background?: Asset
   links?: Entry<NavigationLink>[]
 }
 
@@ -61,7 +62,7 @@ export const Contenu: FunctionComponent<{
         <section 
           id={item.fields.id}
           key={i}
-          className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout]].join(' ')}
+          className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout], 'background' in item.fields && styles.background].join(' ')}
         >
           {{
             'text': <Text item={item as Entry<Text>} first={i === 0} />,
@@ -81,6 +82,10 @@ export const Text: FunctionComponent<{
 }> = ({ item, first }) => {
   return  (
     <div className={styles.content}>
+      {item.fields.background && <figure>
+        <Media media={item.fields.background} />
+      </figure>}
+
       {item.fields.titre && 
         (first
           ? <h1>{item.fields.titre}</h1>
@@ -116,14 +121,14 @@ export const Membres: FunctionComponent<{
   item: Entry<Membres>
 }> = ({ item }) => {
   return  <>
-    {item.fields.titre && <h2>{item.fields.titre}</h2>}
+    {item.fields.titre && <TitleCard label={item.fields.titre} />}
     {item.fields.membres && <ul>
       {item.fields.membres.map((membre, i) => <li key={i}>
         {membre.fields.photo && <figure>
           <Media media={membre.fields.photo} ar={1} />
         </figure>}
-        <strong>{membre.fields.nom}</strong><br />
-        <em>{membre.fields.titre}</em><br />
+        <h5>{membre.fields.nom}</h5>
+        <em>{membre.fields.titre}</em><br /><br />
         <Link href={membre.fields.entrepriseLink}
           target="_blank"
           rel="noopener noreferrer"
@@ -140,9 +145,9 @@ export const Articles: FunctionComponent<{
 
   return (
     <>
-      {item.fields.titre && <h2>{item.fields.titre}</h2>}
+      {item.fields.titre && <TitleCard label={item.fields.titre} />}
       <ArticlesList tag={item.fields.tag} articles={item.fields.articles} />
-      <Link href={`/articles/${item.fields.tag}`}><Button label='Voir tous' /></Link>
+      <center><Link href={`/articles/${item.fields.tag}`}><Button label='Voir tous' /></Link></center>
     </>
   );
 }

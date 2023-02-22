@@ -1,4 +1,41 @@
 .footer {
   padding: var(--gap);
-  background-color: '#363535';
+  color: var(--lowlight-color);
+  background-color: var(--highlight-color);
+
+  > nav,
+  > div,
+  > hr {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  > nav:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    margin: var(--gap) auto;
+
+    span,
+    nav {
+      font-size: calc(var(--base) * 1.5);
+      font-weight: 500;
+      width: 50%;
+      margin-bottom: var(--gap);
+
+      small {
+        opacity: 0.666;
+      }
+    }
+  }
+
+  > div {
+    display: flex;
+    justify-content: space-between;
+    margin: calc(var(--base) / 2) auto;
+
+    nav {
+      display: flex;
+      gap: var(--base);
+    }
+  }
 }

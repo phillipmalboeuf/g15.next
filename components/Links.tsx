@@ -7,7 +7,8 @@ import Button from './Button';
 export const Links: FunctionComponent<{
   links: Entry<NavigationLink>[]
   buttons?: boolean
-}> = ({ links, buttons }) => {
+  emails?: boolean
+}> = ({ links, buttons, emails }) => {
   return <>
     {links.map((link, i) => 
     <Fragment key={i}>
@@ -20,13 +21,18 @@ export const Links: FunctionComponent<{
             }}
           >
             {buttons ? <Button label={link.fields.titre} /> : link.fields.titre}
+            {emails && link.fields.link.startsWith('mailto:') && <>
+              <br />
+              <small>{link.fields.link.replace('mailto:', '')}</small>
+            </>}
           </Link>
         : <span>{link.fields.titre}</span>
       }
       {link.fields.subLinks && (
         <nav>
           <Links
-            links={link.fields.subLinks} 
+            links={link.fields.subLinks}
+            emails
           />  
         </nav>
       )}

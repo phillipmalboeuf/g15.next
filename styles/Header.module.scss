@@ -1,6 +1,7 @@
 .header {
   display: flex;
-  position: absolute;
+  position: sticky;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100vw;
@@ -8,14 +9,14 @@
   align-items: center;
   justify-content: center;
   
-  flex-direction: row;
-  //border-bottom: 1px solid;
-}
+  background-color: var(--lowlight-color);
+  border-bottom: 1px solid var(--highlight-color);
 
-.content {
-  display: flex;
-  width: var(--max-width);
-  align-items: center;
+  .content {
+    display: flex;
+    width: var(--max-width);
+    align-items: center;
+  }
 
   nav {
     flex: 1;
@@ -24,3 +25,4 @@
     gap: var(--base);
   }
 }
+

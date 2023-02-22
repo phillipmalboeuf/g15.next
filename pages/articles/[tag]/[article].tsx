@@ -8,6 +8,7 @@ import { Article, ContentService, getPageProps, Navigations } from '@/services/c
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Contenu, renderText } from '@/components/Contenu'
+import { ArticleDate } from '@/components/Articles'
 
 interface Props {
   tag: string
@@ -25,9 +26,9 @@ const Article: FunctionComponent<Props> = ({ title, tag, article, navigation }) 
       </Head>
       <Header nav={navigation.header} />
       <main className={styles.article}>
-        <h1>{article.fields.titre}</h1>
+        <h1>{article.fields.titre}<br /><ArticleDate article={article} /></h1>
         <nav>{article.fields.tags?.map(tag => <Link key={tag} href={`/articles/${tag}`}>#{tag}</Link>)}</nav>
-        {article.fields.text && renderText(article.fields.text)}
+        <article>{article.fields.text && renderText(article.fields.text)}</article>
       </main>
       <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
     </>
