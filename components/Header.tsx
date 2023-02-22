@@ -26,7 +26,7 @@ export const Header: FunctionComponent<{
         <nav id={nav.fields.id}>
           <Links links={nav.fields.links} />
         </nav>
-        <Link href='https://www.indicateurs.quebec'><Button label='Les indicateurs' /></Link>
+        <Link className={styles.button} href='https://www.indicateurs.quebec'><Button label='Les indicateurs' /></Link>
       </div>
     </header>
   );

@@ -3,7 +3,11 @@
 .texts,
 .articles {
   padding: var(--gap) 0;
-  width: var(--max-width);
+  max-width: var(--max-width);
+
+  @media (max-width: 888px) {
+    padding: var(--gap) var(--base);
+  }
 }
 
 .content {
@@ -26,6 +30,10 @@
     nav {
       width: 50%;
       z-index: 1;
+
+      @media (max-width: 888px) {
+        width: 100%;
+      }
     }
 
     figure {
@@ -52,6 +60,7 @@
 
     p {
       font-size: calc(var(--base) * 1.75);
+      @media (max-width: 888px) { font-size: calc(var(--base) * 1.25); }
     }
   }
 
@@ -60,6 +69,7 @@
 
     p {
       font-size: calc(var(--base) * 3);
+      @media (max-width: 888px) { font-size: calc(var(--base) * 1.5); }
       font-weight: 500;
     }
   }
@@ -77,11 +87,12 @@
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    width: var(--max-width);
+    max-width: var(--max-width);
     gap: calc(var(--gap) / 2);
 
     li {
       width: calc((100% / 4) - calc(var(--gap) / 2));
+      @media (max-width: 888px) { width: calc((100% / 2) - calc(var(--gap) / 2)); }
 
       h5 {
         margin-bottom: 0;
@@ -104,10 +115,6 @@
 }
 
 .texts {
-  // display: flex;
-  // flex-direction: column;
-  // height: 90vh;
-  // width: 1200px;
 
   hr {
     height: calc(var(--base) / 2);
@@ -117,12 +124,18 @@
   }
 
   .content {
+    display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     gap: var(--gap);
 
     > h2,
     > div {
       width: 50%;
+
+      @media (max-width: 888px) {
+        width: 100%;
+      }
     }
   }
 }
