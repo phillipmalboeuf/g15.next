@@ -2,16 +2,17 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Spacer from './Spacer';
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowRight, FiMenu } from "react-icons/fi";
 
 type ButtonProps = {
   label?: string;
-  color?: string;
+  icon?: string
   onClick?: () => void;
 }
 
 const Button: React.FC<ButtonProps> = ({
   label,
+  icon,
   onClick,
 }) => {
   return (
@@ -20,7 +21,9 @@ const Button: React.FC<ButtonProps> = ({
     >
       <span>{label}</span>
       <Spacer />
-      <FiArrowRight size={18} />
+      {{
+        'menu': <FiMenu size={18} />
+      }[icon] || <FiArrowRight size={18} />}
     </motion.button>
   );
 };
