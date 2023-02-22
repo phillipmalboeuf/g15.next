@@ -28,12 +28,10 @@ const Articles: FunctionComponent<Props> = ({ title, tag, articles, navigation }
         <title>{tags[tag] || tag} – {title}</title>
         <meta name="description" content={tags[tag] || tag} />
       </Head>
-      <Header nav={navigation.header} />
       <main className={styles.articles}>
         <h1>{tags[tag] || tag}</h1>
         <ArticlesList tag={tag} articles={articles.items} />
       </main>
-      <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
     </>
   )
 }

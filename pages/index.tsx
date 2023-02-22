@@ -92,7 +92,6 @@ export default Home
 //         <title>G15+</title>
 //         <meta name="description" content={page.fields.description} />
 //       </Head>
-//       <Header nav={navigation.header} />
 //       <main className={styles.main}>
 //         {/* <Contenu contenu={page.fields.contenu} /> */}
 //         <section 
@@ -320,7 +319,6 @@ export default Home
 //           </Center>
 //         </section>
 //       </main>
-//       <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
 //     </>
 //   )
 // }
