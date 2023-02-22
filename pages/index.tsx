@@ -21,11 +21,9 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
         <title>{title}</title>
         <meta name="description" content={page.fields.description} />
       </Head>
-      <Header nav={navigation.header} />
       <main className={styles.main}>
         <Contenu contenu={page.fields.contenu} />
       </main>
-      <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
     </>
   )
 }

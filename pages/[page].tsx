@@ -22,13 +22,11 @@ const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
         <title>{page.fields.titre} – {title}</title>
         <meta name="description" content={page.fields.description} />
       </Head>
-      <Header nav={navigation.header} />
       <main className={styles.main}>
         <section className={styles.content}>
           <Contenu contenu={page.fields.contenu} />
         </section>
       </main>
-      <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
     </>
   )
 }

@@ -2,6 +2,8 @@ import { motion } from 'framer-motion';
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import localFont from '@next/font/local';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
 
 /* DECLARE CUSTOM FONTS */
 const editorial = localFont({
@@ -61,24 +63,24 @@ const montreal = localFont({
   ],
 })
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    /* USE CUSTOM FONTS */
-    /* PAGE TRANSITIONS */
-    <main role='main' className={[editorial.variable, montreal.variable].join(' ')}>  
-      <motion.div
-        initial="pageInitial" 
-        animate="pageAnimate" 
-        variants={{
-          pageInitial: {
-            opacity: 0
-          },
-          pageAnimate: {
-            opacity: 1
-          },
-      }}>
-        <Component {...pageProps} />
-      </motion.div>
-    </main>
-  );
+export default function App({ Component, pageProps, router }: AppProps) {
+  return <main role='main' className={[editorial.variable, montreal.variable].join(' ')}>
+    <Header nav={pageProps.navigation.header} />
+    
+    <motion.div key={router.route}
+      initial="pageInitial" 
+      animate="pageAnimate" 
+      variants={{
+        pageInitial: {
+          opacity: 0
+        },
+        pageAnimate: {
+          opacity: 1
+        },
+    }}>
+      <Component {...pageProps} />
+    </motion.div>
+    
+    <Footer footer={pageProps.navigation.footer} social={pageProps.navigation.social} legal={pageProps.navigation.legal} />
+  </main>
 }
