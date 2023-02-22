@@ -65,7 +65,7 @@ const montreal = localFont({
 
 export default function App({ Component, pageProps, router }: AppProps) {
   return <main role='main' className={[editorial.variable, montreal.variable].join(' ')}>
-    <Header nav={pageProps.navigation.header} />
+    {pageProps.navigation && <Header nav={pageProps.navigation.header} />}
     
     <motion.div key={router.route}
       initial="pageInitial" 
@@ -81,6 +81,6 @@ export default function App({ Component, pageProps, router }: AppProps) {
       <Component {...pageProps} />
     </motion.div>
     
-    <Footer footer={pageProps.navigation.footer} social={pageProps.navigation.social} legal={pageProps.navigation.legal} />
+    {pageProps.navigation && <Footer footer={pageProps.navigation.footer} social={pageProps.navigation.social} legal={pageProps.navigation.legal} />}
   </main>
 }
