@@ -12,25 +12,16 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({
   label,
-  color,
-  onClick
+  onClick,
 }) => {
   return (
-    <motion.div 
-      style={{
-        display: 'flex',
-        padding: '6px 12px 6px 20px',
-        borderRadius: 99,
-        backgroundColor: color || '#625BF6',
-        flexDirection: 'row',
-        alignItems: 'center',
-      }}
+    <motion.button
       onClick={onClick}
     >
-      <p style={{fontSize:18, color: '#FEFEFE'}}>{label}</p>
+      <span>{label}</span>
       <Spacer />
-      <FiArrowRight size={18} color='#FEFEFE' />
-    </motion.div>
+      <FiArrowRight size={18} />
+    </motion.button>
   );
 };
 

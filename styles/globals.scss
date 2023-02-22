@@ -1,5 +1,9 @@
 :root {
-  --gap: 10px;
+  --base: 16px;
+  --gap: calc(var(--base) * 3.5);
+  --max-width: 1200px;
+  --highlight-color: #333;
+  --lowlight-color: #fbfbf8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,7 +36,7 @@ main[role="main"] {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-  margin: 0;
+  margin: 0 0 var(--base);
 }
 
 h1 {
@@ -68,13 +72,33 @@ h5 {
 }
 
 p {
-  font-size: 28px;
-  line-height: 36px;
+  font-size: var(--base);
+  line-height: 125%;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button {
+  padding: calc(var(--base) / 2) calc(var(--base) / 1.5) calc(var(--base) / 2) var(--base);
+  border-radius: 2em;
+  border: none;
+  font-size: var(--base);
+  color: var(--lowlight-color);
+  background-color: var(--highlight-color);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
 }
 
 img,

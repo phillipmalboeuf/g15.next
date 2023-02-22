@@ -13,7 +13,6 @@ const Center = ({ children }) => {
             margin: 0,
             paddingTop: 56,
             paddingBottom: 56,
-            //backgroundColor: 'orange',
         }}
     >
       {children}

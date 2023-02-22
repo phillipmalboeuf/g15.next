@@ -12,7 +12,6 @@ const Spacer: React.FC<SpacerProps> = ({
   return (
     <div 
       style={{
-        display: 'flex',
         height: 20,
         width: 12,
       }}

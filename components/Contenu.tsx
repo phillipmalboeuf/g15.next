@@ -11,6 +11,8 @@ import { Article, NavigationLink } from '@/services/content'
 import styles from '@/styles/Contenu.module.scss'
 import { useRouter } from 'next/router'
 import { Media } from './Media'
+import TitleCard from './TitleCard'
+import Button from './Button'
 
 interface Text {
   titre: string
@@ -62,7 +64,7 @@ export const Contenu: FunctionComponent<{
           className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout]].join(' ')}
         >
           {{
-            'text': <Text item={item as Entry<Text>} />,
+            'text': <Text item={item as Entry<Text>} first={i === 0} />,
             'texts': <Texts item={item as Entry<Texts>} />,
             'membres': <Membres item={item as Entry<Membres>} />,
             'articles': <Articles item={item as Entry<Articles>} />,
@@ -75,18 +77,21 @@ export const Contenu: FunctionComponent<{
 
 export const Text: FunctionComponent<{
   item: Entry<Text>
-}> = ({ item }) => {
+  first?: boolean
+}> = ({ item, first }) => {
   return  (
     <div className={styles.content}>
       {item.fields.titre && 
-        <h2>{item.fields.titre}</h2>
+        (first
+          ? <h1>{item.fields.titre}</h1>
+          : <h2>{item.fields.titre}</h2>)
       }
-      {item.fields.text && 
-        renderText(item.fields.text)
-      }
+      {item.fields.text && <div>
+        {renderText(item.fields.text)}
+      </div>}
       {item.fields.links && 
         <nav>
-          <Links links={item.fields.links} />  
+          <Links links={item.fields.links} buttons />  
         </nav>
       }
     </div>
@@ -98,7 +103,7 @@ export const Texts: FunctionComponent<{
 }> = ({ item }) => {
   return (
     <>
-      {item.fields.titre && <h2>{item.fields.titre}</h2>}
+      {item.fields.titre && <TitleCard label={item.fields.titre} />}
       {item.fields.texts && item.fields.texts.map((text, i) => <article id={text.fields.id} key={i}>
         <hr />
         <Text item={text} />
@@ -137,7 +142,7 @@ export const Articles: FunctionComponent<{
     <>
       {item.fields.titre && <h2>{item.fields.titre}</h2>}
       <ArticlesList tag={item.fields.tag} articles={item.fields.articles} />
-      <Link href={`/articles/${item.fields.tag}`}>Voir tous</Link>
+      <Link href={`/articles/${item.fields.tag}`}><Button label='Voir tous' /></Link>
     </>
   );
 }

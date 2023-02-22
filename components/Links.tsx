@@ -2,10 +2,12 @@ import { NavigationLink } from '@/services/content';
 import { Entry } from 'contentful';
 import Link from 'next/link';
 import { Fragment, FunctionComponent } from 'react';
+import Button from './Button';
 
 export const Links: FunctionComponent<{
   links: Entry<NavigationLink>[]
-}> = ({ links }) => {
+  buttons?: boolean
+}> = ({ links, buttons }) => {
   return <>
     {links.map((link, i) => 
     <Fragment key={i}>
@@ -16,11 +18,10 @@ export const Links: FunctionComponent<{
               target: "_blank",
               rel: "noopener noreferrer"
             }}
-            style={{textDecoration: 'none', paddingRight: 32}}
           >
-            {link.fields.titre}
+            {buttons ? <Button label={link.fields.titre} /> : link.fields.titre}
           </Link>
-        : <span style={{textDecoration: 'none'}}>{link.fields.titre}</span>
+        : <span>{link.fields.titre}</span>
       }
       {link.fields.subLinks && (
         <nav>

@@ -4,24 +4,23 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 56px;
+  height: var(--gap);
   align-items: center;
   justify-content: center;
   
   flex-direction: row;
-  //background-color: #dedede;
   //border-bottom: 1px solid;
 }
 
 .content {
   display: flex;
-  width: 1200px;
+  width: var(--max-width);
   align-items: center;
-  //background-color: blueviolet;
 
   nav {
     flex: 1;
     display: flex;
     justify-content: center;
+    gap: var(--base);
   }
 }
