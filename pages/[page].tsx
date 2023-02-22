@@ -24,7 +24,9 @@ const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
       </Head>
       <Header nav={navigation.header} />
       <main className={styles.main}>
-        <Contenu contenu={page.fields.contenu} />
+        <section className={styles.content}>
+          <Contenu contenu={page.fields.contenu} />
+        </section>
       </main>
       <Footer footer={navigation.footer} social={navigation.social} legal={navigation.legal} />
     </>

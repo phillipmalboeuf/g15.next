@@ -3,6 +3,7 @@
 .texts,
 .articles {
   padding: var(--gap) 0;
+  width: 100%;
   max-width: var(--max-width);
 
   @media (max-width: 888px) {
@@ -131,7 +132,7 @@
 
     > h2,
     > div {
-      width: 50%;
+      width: calc(50% - var(--gap));
 
       @media (max-width: 888px) {
         width: 100%;
