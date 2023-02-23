@@ -20,7 +20,13 @@
 }
 
 .text {
+  max-width: none;
   // display: flex;
+
+  .content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
   &.background {
     position: relative;
@@ -131,12 +137,32 @@
     gap: var(--gap);
 
     > h2,
-    > div {
+    > div,
+    > ul {
       width: calc(50% - var(--gap));
 
       @media (max-width: 888px) {
         width: 100%;
       }
     }
+  }
+}
+
+.cards {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--base);
+  grid-template-columns: repeat(2, 1fr);
+
+  a:hover,
+  a:focus {
+    article {
+      border: 2px solid;
+    }
+  }
+
+  article {
+    border: 2px solid transparent;
   }
 }

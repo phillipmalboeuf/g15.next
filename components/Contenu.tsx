@@ -3,16 +3,31 @@ import type { Document } from '@contentful/rich-text-types'
 import { documentToReactComponents, Options, RenderNode } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, MARKS, INLINES } from '@contentful/rich-text-types'
 import Link from 'next/link'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useState } from 'react'
 import { Links } from './Links'
 import { Articles as ArticlesList } from './Articles'
 import { Article, NavigationLink } from '@/services/content'
 
 import styles from '@/styles/Contenu.module.scss'
+import cardStyles from '@/styles/Cards.module.scss'
 import { useRouter } from 'next/router'
 import { Media } from './Media'
 import TitleCard from './TitleCard'
 import Button from './Button'
+import { CardsPopup } from './CardsPopup'
+
+export interface Card {
+  titre: string
+  id: string
+  text: Document
+  icon?: Asset
+}
+
+export interface Cards {
+  titre: string
+  id: string
+  cards?: Entry<Card>[]
+}
 
 interface Text {
   titre: string
@@ -26,7 +41,7 @@ interface Text {
 interface Texts {
   titre: string
   id: string
-  texts?: Entry<Text>[]
+  texts?: (Entry<Text> | Entry<Cards>)[]
 }
 
 interface Membres {
@@ -69,6 +84,7 @@ export const Contenu: FunctionComponent<{
             'texts': <Texts item={item as Entry<Texts>} />,
             'membres': <Membres item={item as Entry<Membres>} />,
             'articles': <Articles item={item as Entry<Articles>} />,
+            'cards': <Cards item={item as Entry<Articles>} />,
           }[item.sys.contentType.sys.id]}
         </section>
       )}
@@ -111,10 +127,36 @@ export const Texts: FunctionComponent<{
       {item.fields.titre && <TitleCard label={item.fields.titre} />}
       {item.fields.texts && item.fields.texts.map((text, i) => <article id={text.fields.id} key={i}>
         <hr />
-        <Text item={text} />
+        {text.sys.contentType.sys.id === 'text'
+          ? <Text item={text as Entry<Text>} />
+          : <Cards item={text} />}
       </article>)}
     </>
   );
+}
+
+export const Cards: FunctionComponent<{
+  item: Entry<Cards>
+}> = ({ item }) => {
+  const [visible, setVisible] = useState<string>()
+  return  <>
+    <div className={styles.content}>
+      <h2>{item.fields.titre}</h2>
+      <ul className={styles.cards} id={item.fields.id}>
+      {item.fields.cards.map(card => <li key={card.fields.id}>
+        <a href={`#${item.fields.id}–${card.fields.id}`} onClick={() => setVisible(card.fields.id)}>
+          <article className={cardStyles.card}>
+            {card.fields.icon && <figure>
+              <Media media={card.fields.icon} />
+            </figure>}
+            <h5>{card.fields.titre}</h5>
+          </article>
+        </a>
+      </li>)}
+      </ul>
+  </div>
+    {visible && <CardsPopup cards={item.fields.cards} onHide={() => setVisible(undefined)} visible={visible} />}
+  </>
 }
 
 export const Membres: FunctionComponent<{

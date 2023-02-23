@@ -1,0 +1,64 @@
+.popup {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+
+  display: flex;
+  align-items: center;
+
+  .background {
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--highlight-color);
+    border-radius: 0;
+    opacity: 0.88;
+  }
+
+  .card {
+    width: calc(var(--gap) * 7);
+  }
+}
+
+
+.cards {
+  list-style: none;
+  padding: var(--gap);
+  display: flex;
+  gap: calc(var(--gap) / 2);
+}
+
+  .card {
+    position: relative;
+    height: 100%;
+    padding: var(--base) var(--base) calc(var(--base) * 3);
+    max-width: calc(var(--gap) * 7);
+    background-color: white;
+    border-radius: calc(var(--base) * 2);
+
+    figure {
+      margin: calc(var(--base) * 2);
+
+      img {
+        width: 100%;
+        height: calc(var(--gap) * 2.5);
+        object-fit: contain;
+      }
+    }
+
+    center {
+      position: absolute;
+      bottom: var(--base);
+      left: 0;
+      width: 100%;
+      opacity: 0.33;
+    }
+  }
+

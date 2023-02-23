@@ -67,7 +67,7 @@ export const ContentService = {
     }
   },
   page: async (id: string, locale: string) => {
-    const pages = await contentful.getEntries<Page>({ content_type: 'page', locale, include: 2,
+    const pages = await contentful.getEntries<Page>({ content_type: 'page', locale, include: 4,
       'fields.id': id })
     return pages.items[0]
   },

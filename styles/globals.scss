@@ -67,8 +67,7 @@ h2 {
 h3 {
   font-size: 48px;
   line-height: 120%;
-  font-weight: 500;
-  
+  font-weight: 500; 
 }
 
 h4 {
@@ -78,6 +77,7 @@ h4 {
 }
 
 h5 {
+  font-family: var(--font-editorial);
   font-size: 18px;
   line-height: 24px;
 }
