@@ -23,7 +23,7 @@
   }
 
   .card {
-    width: calc(var(--gap) * 7);
+    width: calc(var(--base) * 22);
     padding-bottom: calc(var(--base) * 3);
   }
 }
@@ -34,13 +34,15 @@
   padding: var(--gap);
   display: flex;
   gap: calc(var(--gap) / 2);
+  pointer-events: none;
 }
 
   .card {
+    pointer-events: auto;
     position: relative;
     height: 100%;
     padding: var(--base);
-    max-width: calc(var(--gap) * 7);
+    // max-width: calc(var(--base) * 20);
     background-color: white;
     border-radius: calc(var(--base) * 2);
 

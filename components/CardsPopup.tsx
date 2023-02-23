@@ -21,7 +21,7 @@ export const CardsPopup: FunctionComponent<{
 
   return <aside className={styles.popup}>
     <button className={styles.background} onClick={onHide}></button>
-    <ul ref={element} className={styles.cards} style={{ width: `calc(var(--gap) * 8 * ${cards.length})` }}>
+    <ul ref={element} className={styles.cards} style={{ width: `calc(var(--base) * 26 * ${cards.length})` }}>
     {cards.map(card => <li id={card.fields.id} key={card.fields.id}>
       <article className={styles.card}>
         {card.fields.icon && <figure>
