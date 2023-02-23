@@ -24,6 +24,7 @@
 
   .card {
     width: calc(var(--gap) * 7);
+    padding-bottom: calc(var(--base) * 3);
   }
 }
 
@@ -38,7 +39,7 @@
   .card {
     position: relative;
     height: 100%;
-    padding: var(--base) var(--base) calc(var(--base) * 3);
+    padding: var(--base);
     max-width: calc(var(--gap) * 7);
     background-color: white;
     border-radius: calc(var(--base) * 2);
