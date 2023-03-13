@@ -28,19 +28,31 @@
     margin: 0 auto;
   }
 
+  p {
+    font-size: calc(var(--base) * 1.5);
+  }
+
+  p,
+  h1,
+  h2 {
+    max-width: calc(var(--max-width) * 0.75);
+  }
+
   &.background {
     position: relative;
+    display: flex;
+    height: calc(66vh - var(--gap));
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+    }
 
     h1,
     h2,
     div,
     nav {
-      width: 50%;
       z-index: 1;
-
-      @media (max-width: 888px) {
-        width: 100%;
-      }
     }
 
     figure {
@@ -61,9 +73,22 @@
     }
   }
 
+  &.dark {
+    color: white;
+    background-color: black;
+
+    figure {
+      opacity: 0.66;
+    }
+  }
+
   &.Hero {
     display: flex;
     height: calc(100vh - var(--gap));
+
+    .content {
+      justify-content: center;
+    }
 
     p {
       font-size: calc(var(--base) * 1.75);
@@ -112,7 +137,7 @@
   }
 
   figure {
-    margin: var(--gap) 0 calc(var(--gap) / 2);
+    margin: calc(var(--gap) / 2) 0;
     width: calc(var(--gap) * 2);
 
     img {

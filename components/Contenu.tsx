@@ -35,6 +35,7 @@ interface Text {
   layout: string
   text: Document
   background?: Asset
+  dark?: boolean
   links?: Entry<NavigationLink>[]
 }
 
@@ -77,10 +78,10 @@ export const Contenu: FunctionComponent<{
         <section 
           id={item.fields.id}
           key={i}
-          className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout], 'background' in item.fields && styles.background].join(' ')}
+          className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout], 'background' in item.fields && styles.background, item.fields.dark && styles.dark].filter(s => s).join(' ')}
         >
           {{
-            'text': <Text item={item as Entry<Text>} first={i === 0} />,
+            'text': <Text item={item as Entry<Text>} first={i === 0} card />,
             'texts': <Texts item={item as Entry<Texts>} />,
             'membres': <Membres item={item as Entry<Membres>} />,
             'articles': <Articles item={item as Entry<Articles>} />,
@@ -95,7 +96,8 @@ export const Contenu: FunctionComponent<{
 export const Text: FunctionComponent<{
   item: Entry<Text>
   first?: boolean
-}> = ({ item, first }) => {
+  card?: boolean
+}> = ({ item, first, card }) => {
   return  (
     <div className={styles.content}>
       {item.fields.background && <figure>
@@ -105,16 +107,19 @@ export const Text: FunctionComponent<{
       {item.fields.titre && 
         (first
           ? <h1>{item.fields.titre}</h1>
-          : <h2>{item.fields.titre}</h2>)
+          : card
+            ? <TitleCard label={item.fields.titre} />
+            : <h2>{item.fields.titre}</h2>)
       }
       {item.fields.text && <div>
         {renderText(item.fields.text)}
+
+        {item.fields.links && 
+          <nav>
+            <Links links={item.fields.links} buttons />  
+          </nav>
+        }
       </div>}
-      {item.fields.links && 
-        <nav>
-          <Links links={item.fields.links} buttons />  
-        </nav>
-      }
     </div>
   );
 }

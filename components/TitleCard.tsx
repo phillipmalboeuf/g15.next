@@ -10,13 +10,14 @@ type TitleCardProps = {
     color?: string;
   }
 
-  const TitleCard: React.FC<TitleCardProps> = ({
+const TitleCard: React.FC<TitleCardProps> = ({
     label,
-  }) => {
+}) => {
   return (
     <div
         style={{
             display: 'flex',
+            marginBottom: 'calc(var(--gap) / 2)'
         }}
     >
         <div
