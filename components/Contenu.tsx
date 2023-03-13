@@ -14,7 +14,7 @@ import { useRouter } from 'next/router'
 import { Media } from './Media'
 import TitleCard from './TitleCard'
 import Button from './Button'
-import { CardsPopup } from './CardsPopup'
+import { CardPopup, CardsPopup } from './CardsPopup'
 
 export interface Card {
   titre: string
@@ -155,7 +155,7 @@ export const Cards: FunctionComponent<{
       </li>)}
       </ul>
   </div>
-    {visible && <CardsPopup cards={item.fields.cards} onHide={() => setVisible(undefined)} visible={visible} />}
+    {visible && <CardPopup card={item.fields.cards.find(c => c.fields.id === visible)} onHide={() => setVisible(undefined)} visible={visible} />}
   </>
 }
 

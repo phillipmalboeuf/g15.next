@@ -22,6 +22,16 @@
     opacity: 0.88;
   }
 
+  .close {
+    color: currentColor;
+    background-color: transparent;
+    font-size: 2em;
+    line-height: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
   .card {
     width: calc(var(--base) * 22);
     padding-bottom: calc(var(--base) * 3);
@@ -33,6 +43,8 @@
   list-style: none;
   padding: var(--gap);
   display: flex;
+  justify-content: center;
+  width: 100%;
   gap: calc(var(--gap) / 2);
   pointer-events: none;
 }
