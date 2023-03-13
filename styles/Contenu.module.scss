@@ -30,6 +30,7 @@
 
   p {
     font-size: calc(var(--base) * 1.5);
+    @media (max-width: 888px) { font-size: calc(var(--base) * 1.15); }
   }
 
   p,
@@ -41,7 +42,7 @@
   &.background {
     position: relative;
     display: flex;
-    height: calc(66vh - var(--gap));
+    min-height: calc(66vh - var(--gap));
 
     .content {
       display: flex;
