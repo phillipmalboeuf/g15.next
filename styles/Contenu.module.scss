@@ -165,7 +165,7 @@
     > h2,
     > div,
     > ul {
-      width: calc(50% - var(--gap));
+      width: calc(50% - (var(--gap) / 2));
 
       @media (max-width: 888px) {
         width: 100%;
