@@ -23,9 +23,7 @@ const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
         <meta name="description" content={page.fields.description} />
       </Head>
       <main className={styles.main}>
-        <section className={styles.content}>
-          <Contenu contenu={page.fields.contenu} />
-        </section>
+        <Contenu contenu={page.fields.contenu} />
       </main>
     </>
   )
