@@ -3,6 +3,13 @@
   color: var(--lowlight-color);
   background-color: var(--highlight-color);
 
+  svg {
+    path {
+      stroke: currentColor !important;
+      fill: transparent !important;
+    }
+  }
+
   > nav,
   > div,
   > hr {

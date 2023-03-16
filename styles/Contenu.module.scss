@@ -42,7 +42,8 @@
   &.background {
     position: relative;
     display: flex;
-    min-height: calc(66vh - var(--gap));
+    padding: calc(var(--gap) * 1.5) 0;
+    min-height: calc(75vh - var(--gap));
 
     .content {
       display: flex;
@@ -77,6 +78,13 @@
   &.dark {
     color: white;
     background-color: black;
+
+    svg {
+      path {
+        stroke: currentColor !important;
+        fill: transparent !important;
+      }
+    }
 
     figure {
       opacity: 0.66;
@@ -153,7 +161,17 @@
     height: calc(var(--base) / 2);
     margin: calc(var(--base) * 2) 0;
     border: none;
-    background-color: var(--highlight-color);
+    background-color: var(--color);
+  }
+
+  .intro {
+    max-width: calc(var(--max-width) * 0.75);
+
+    p {
+      font-size: calc(var(--base) * 2.5);
+      font-weight: 500;
+      @media (max-width: 888px) { font-size: calc(var(--base) * 1.15); }
+    }
   }
 
   .content {

@@ -33,6 +33,7 @@ interface Text {
   titre: string
   id: string
   layout: string
+  couleur: string
   text: Document
   background?: Asset
   dark?: boolean
@@ -42,6 +43,7 @@ interface Text {
 interface Texts {
   titre: string
   id: string
+  intro: Document
   texts?: (Entry<Text> | Entry<Cards>)[]
 }
 
@@ -130,7 +132,12 @@ export const Texts: FunctionComponent<{
   return (
     <>
       {item.fields.titre && <TitleCard label={item.fields.titre} />}
-      {item.fields.texts && item.fields.texts.map((text, i) => <article id={text.fields.id} key={i}>
+      {item.fields.intro && <div className={styles.intro}>
+        {renderText(item.fields.intro)}
+      </div>}
+      {item.fields.texts && item.fields.texts.map((text, i) => <article id={text.fields.id} key={i} style={{
+        '--color': ('couleur' in text.fields && text.fields.couleur) || 'var(--highlight-color)'
+      } as React.CSSProperties}>
         <hr />
         {text.sys.contentType.sys.id === 'text'
           ? <Text item={text as Entry<Text>} />
