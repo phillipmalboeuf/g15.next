@@ -13,14 +13,14 @@
   > nav:first-of-type {
     display: flex;
     flex-wrap: wrap;
-    margin: var(--gap) auto;
+    margin: calc(var(--gap) / 2) auto;
 
     span,
     nav {
       font-size: calc(var(--base) * 1.5);
       font-weight: 500;
       width: 50%;
-      margin-bottom: var(--gap);
+      margin-bottom: calc(var(--gap) / 2);
 
       @media (max-width: 888px) {
         width: 100%;
