@@ -2,7 +2,9 @@
   --base: 16px;
   --gap: calc(var(--base) * 3.5);
   --max-width: 1200px;
-  --highlight-color: #333;
+  --base-color: #1D1D1F;
+  --highlight-color: #1F2129;
+  --alt-color: #F7D152;
   --lowlight-color: #fbfbf8;
 
   @media (max-width: 888px) {
@@ -33,7 +35,10 @@ body {
 }
 
 body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: var(--base-color);
   font-size: var(--base);
+  letter-spacing: -0.04ch;
 }
 
 main[role="main"] {
@@ -49,7 +54,6 @@ h1 {
   font-family: var(--font-editorial);
   font-weight: 400;
   font-size: 72px;
-  line-height: 115%;
 
   @media (max-width: 888px) {
     font-size: 48px;
@@ -58,7 +62,8 @@ h1 {
 
 h2 {
   font-family: var(--font-editorial);
-  font-size: 26px;
+  font-size: 54px;
+  font-weight: 500;
   
   @media (max-width: 888px) {
     font-size: 24px;
@@ -66,26 +71,22 @@ h2 {
 }
 
 h3 {
-  font-size: 48px;
-  line-height: 120%;
+  font-size: 40px;
   font-weight: 500; 
 }
 
 h4 {
-  font-size: 28px;
-  line-height: 120%;
+  font-size: 20px;
   font-weight: 500;
 }
 
 h5 {
   font-family: var(--font-editorial);
   font-size: 18px;
-  line-height: 24px;
 }
 
 p {
   font-size: var(--base);
-  line-height: 125%;
 }
 
 a {

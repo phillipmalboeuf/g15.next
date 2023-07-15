@@ -8,25 +8,38 @@ import logo from '../public/images/logo.png'
 import styles from '@/styles/Header.module.scss'
 import Image from 'next/image'
 import Button from './Button'
+import { LinkedIn, Logo, Twitter } from './Icons'
 
 export const Header: FunctionComponent<{
   nav: Entry<Navigation>
-}> = ({ nav }) => {
+  social: Entry<Navigation>
+}> = ({ nav, social }) => {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
         <Link href='/'>
-          <Image
-            height={48}
-            width={40}
-            alt='g15 plus'
-            src={logo}
-          />
+          <Logo height={53} width={53} />
         </Link>
         <nav id={nav.fields.id}>
           <Links links={nav.fields.links} />
         </nav>
-        <Link className={styles.button} href='https://www.indicateurs.quebec'><Button label='Les indicateurs' /></Link>
+        <nav>
+          <Link 
+            href={'https://twitter.com/g15plus'}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Twitter height={34} width={34} />
+          </Link>
+          <Link 
+            href={'https://www.linkedin.com/company/g15plus-quebec/'}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <LinkedIn height={34} width={34} />
+          </Link>
+        </nav>
+        {/* <Link className={styles.button} href='https://www.indicateurs.quebec'><Button label='Les indicateurs' /></Link> */}
         <Menu nav={nav} />
       </div>
     </header>

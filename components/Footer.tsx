@@ -14,10 +14,10 @@ export const Footer: FunctionComponent<{
 }> = ({ footer, social, legal }) => {
   return (
     <footer className={styles.footer}>
-      <TitleCard label={footer.fields.titre} />
+      {/* <TitleCard label={footer.fields.titre} />
       <nav id={footer.fields.id}>
         <Links links={footer.fields.links} emails />
-      </nav>
+      </nav> */}
 
       <div>
         G15+

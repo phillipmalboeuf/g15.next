@@ -1,7 +1,7 @@
 .footer {
-  padding: var(--gap);
-  color: var(--lowlight-color);
-  background-color: var(--highlight-color);
+  padding: calc(var(--gap) / 2) var(--gap);
+  // color: var(--lowlight-color);
+  background-color: white;
 
   svg {
     path {
