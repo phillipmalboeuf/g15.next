@@ -1,62 +1,23 @@
 
 import type { Asset, Entry, EntryCollection } from 'contentful'
-import type { Document } from '@contentful/rich-text-types'
 import { contentful } from '@/clients/contentful'
 import { GetStaticPropsContext } from 'next'
 
-
-export interface NavigationLink {
-  titre: string
-  link: string
-  external?: boolean
-  emphasize: boolean
-  subLinks: Entry<NavigationLink>[]
-  // photo?: Asset
-}
-
-export interface Navigation {
-  titre: string
-  id: string
-  links: Entry<NavigationLink>[]
-}
-
-export interface Page {
-  titre: string
-  id: string
-  description: string
-  contenu: Entry<any>[]
-}
-
-// export interface ArticleCategory {
-//   titre: string
-//   id: string
-//   description: string
-//   photo: Asset
-// }
-
-export interface Article {
-  titre: string
-  id: string
-  tags: string[]
-  excerpt: string
-  publishedAt: Date
-  text: Document
-  photo: Asset
-}
+import { TypeArticleSkeleton, TypeLinkSkeleton, TypeNavigationSkeleton, TypePageSkeleton } from '@/clients/content_types'
 
 export interface Navigations {
-  header: Entry<Navigation>
-  footer: Entry<Navigation>
-  social: Entry<Navigation>
-  legal: Entry<Navigation>
+  header: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+  footer: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+  social: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+  legal: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }
 
 const limit = 42
 
 export const ContentService = {
-  navigation: async (locale: string): Promise<Navigations> => {
+  navigation: async (locale: string) => {
     const [navs] = await Promise.all([
-      contentful.getEntries<Navigation>({ content_type: 'navigation', locale, include: 2 }),
+      contentful.getEntries<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">({ content_type: 'navigation', locale, include: 2 }),
       // contentful.getEntries<NavigationLink>({ content_type: 'navigationLink', locale, include: 2 })
     ])
     return {
@@ -67,17 +28,17 @@ export const ContentService = {
     }
   },
   page: async (id: string, locale: string) => {
-    const pages = await contentful.getEntries<Page>({ content_type: 'page', locale, include: 4,
+    const pages = await contentful.getEntries<TypePageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">({ content_type: 'page', locale, include: 4,
       'fields.id': id })
     return pages.items[0]
   },
   article: async (id: string, locale: string) => {
-    const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 2,
+    const articles = await contentful.getEntries<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">({ content_type: 'article', locale, include: 2,
       'fields.id': id })
     return articles.items[0]
   },
   articles: async (tag: string, page: number, sort: string, locale: string, limitOverride?: number) => {
-    const articles = await contentful.getEntries<Article>({ content_type: 'article', locale, include: 3,
+    const articles = await contentful.getEntries<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">({ content_type: 'article', locale, include: 3,
       'fields.tags': tag,
       'fields.publishedAt[lte]': new Date().toISOString(),
       limit: (limitOverride || limit),

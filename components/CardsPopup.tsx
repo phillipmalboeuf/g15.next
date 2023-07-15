@@ -1,12 +1,13 @@
 import { Entry } from 'contentful'
 import { FunctionComponent, useEffect, useRef } from 'react'
-import { Card, renderText } from './Contenu'
+import { renderText } from './Contenu'
 
 import styles from '@/styles/Cards.module.scss'
 import { Media } from './Media'
+import { TypeCardSkeleton } from '@/clients/content_types'
 
 export const CardsPopup: FunctionComponent<{
-  cards: Entry<Card>[]
+  cards: Entry<TypeCardSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">[]
   visible: string
   onHide: () => void
 }> = ({ cards, visible, onHide }) => {
@@ -39,7 +40,7 @@ export const CardsPopup: FunctionComponent<{
 }
 
 export const CardPopup: FunctionComponent<{
-  card: Entry<Card>
+  card: Entry<TypeCardSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
   visible: string
   onHide: () => void
 }> = ({ card, visible, onHide }) => {

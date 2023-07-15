@@ -1,4 +1,3 @@
-import { Navigation } from '@/services/content'
 import { Entry } from 'contentful'
 import { FunctionComponent, useState } from 'react'
 import Link from 'next/link'
@@ -9,15 +8,16 @@ import styles from '@/styles/Header.module.scss'
 import Image from 'next/image'
 import Button from './Button'
 import { LinkedIn, Logo, Twitter } from './Icons'
+import { TypeNavigationSkeleton } from '@/clients/content_types'
 
 export const Header: FunctionComponent<{
-  nav: Entry<Navigation>
-  social: Entry<Navigation>
+  nav: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+  social: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ nav, social }) => {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <Link href='/'>
+        <Link href='/' className={styles.logo}>
           <Logo height={53} width={53} />
         </Link>
         <nav id={nav.fields.id}>
@@ -47,7 +47,7 @@ export const Header: FunctionComponent<{
 }
 
 const Menu: FunctionComponent<{
-  nav: Entry<Navigation>
+  nav: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ nav }) => {
   const [visible, setVisible] = useState(false)
   return <div className={styles.menu}>

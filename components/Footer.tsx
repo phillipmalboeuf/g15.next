@@ -1,4 +1,3 @@
-import { Navigation } from '@/services/content'
 import { Entry } from 'contentful'
 import Link from 'next/link'
 import { FunctionComponent } from 'react'
@@ -6,11 +5,12 @@ import { Links } from './Links'
 
 import styles from '@/styles/Footer.module.scss'
 import TitleCard from './TitleCard'
+import { TypeNavigationSkeleton } from '@/clients/content_types'
 
 export const Footer: FunctionComponent<{
-  footer: Entry<Navigation>
-  social: Entry<Navigation>
-  legal: Entry<Navigation>
+  footer: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+  social: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+  legal: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ footer, social, legal }) => {
   return (
     <footer className={styles.footer}>

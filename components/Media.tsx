@@ -2,7 +2,7 @@ import { Asset, Entry } from 'contentful'
 import { Fragment, FunctionComponent } from 'react'
 
 export const Media: FunctionComponent<{
-  media: Asset
+  media: Asset<"WITHOUT_UNRESOLVABLE_LINKS">
   eager?: boolean
   ar?: number
 }> = ({ media, eager, ar }) => {

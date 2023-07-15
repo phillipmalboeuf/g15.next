@@ -1,11 +1,11 @@
-import { NavigationLink } from '@/services/content';
 import { Entry } from 'contentful';
 import Link from 'next/link';
 import { Fragment, FunctionComponent } from 'react';
 import Button from './Button';
+import { TypeLinkSkeleton } from '@/clients/content_types';
 
 export const Links: FunctionComponent<{
-  links: Entry<NavigationLink>[]
+  links: Entry<TypeLinkSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">[]
   buttons?: boolean
   emails?: boolean
 }> = ({ links, buttons, emails }) => {

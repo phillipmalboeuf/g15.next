@@ -18,6 +18,21 @@
     justify-content: space-between;
   }
 
+  .logo {
+
+    &:hover,
+    &:focus {
+      circle {
+        stroke: transparent;
+        fill: var(--logo-color);
+      }
+
+      path {
+        fill: white;
+      }
+    }
+  }
+
   nav {
     flex: 1;
     display: flex;

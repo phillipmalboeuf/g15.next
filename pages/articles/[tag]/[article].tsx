@@ -4,16 +4,17 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from '@/styles/Articles.module.scss'
 import { Entry, EntryCollection } from 'contentful'
-import { Article, ContentService, getPageProps, Navigations } from '@/services/content'
+import { ContentService, getPageProps, Navigations } from '@/services/content'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Contenu, renderText } from '@/components/Contenu'
 import { ArticleDate } from '@/components/Articles'
+import { TypeArticleSkeleton } from '@/clients/content_types'
 
 interface Props {
   tag: string
   title: string
-  article: Entry<Article>
+  article: Entry<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
   navigation: Navigations
 }
 

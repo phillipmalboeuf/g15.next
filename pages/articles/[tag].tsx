@@ -3,17 +3,15 @@ import { FunctionComponent } from 'react'
 import Head from 'next/head'
 import styles from '@/styles/Articles.module.scss'
 import { Entry, EntryCollection } from 'contentful'
-import { Article, ContentService, Navigations } from '@/services/content'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
-import { Contenu } from '@/components/Contenu'
+import { ContentService, Navigations } from '@/services/content'
 import { Articles as ArticlesList } from '@/components/Articles'
 import Link from 'next/link'
+import { TypeArticleSkeleton } from '@/clients/content_types'
 
 interface Props {
   tag: string
   title: string
-  articles: EntryCollection<Article>
+  articles: EntryCollection<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
   navigation: Navigations
 }
 

@@ -3,15 +3,16 @@ import { FunctionComponent } from 'react'
 import Head from 'next/head'
 import styles from '@/styles/Page.module.scss'
 import { Entry } from 'contentful'
-import { ContentService, getPageProps, Navigations, Page } from '@/services/content'
+import { ContentService, getPageProps, Navigations } from '@/services/content'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { Contenu } from '@/components/Contenu'
+import { TypePageSkeleton } from '@/clients/content_types'
 
 interface Props {
   id: string
   title: string
-  page: Entry<Page>
+  page: Entry<TypePageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
   navigation?: Navigations
 }
 

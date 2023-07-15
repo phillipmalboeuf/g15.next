@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { FunctionComponent, useState } from 'react'
 import { Links } from './Links'
 import { Articles as ArticlesList } from './Articles'
-import { Article, NavigationLink } from '@/services/content'
 
 import styles from '@/styles/Contenu.module.scss'
 import cardStyles from '@/styles/Cards.module.scss'
@@ -15,63 +14,14 @@ import { Media } from './Media'
 import TitleCard from './TitleCard'
 import Button from './Button'
 import { CardPopup, CardsPopup } from './CardsPopup'
-
-export interface Card {
-  titre: string
-  id: string
-  text: Document
-  icon?: Asset
-}
-
-export interface Cards {
-  titre: string
-  id: string
-  cards?: Entry<Card>[]
-}
-
-interface Text {
-  titre: string
-  id: string
-  layout: string
-  couleur: string
-  text: Document
-  background?: Asset
-  dark?: boolean
-  links?: Entry<NavigationLink>[]
-}
-
-interface Texts {
-  titre: string
-  id: string
-  intro: Document
-  texts?: (Entry<Text> | Entry<Cards>)[]
-}
-
-interface Membres {
-  titre: string
-  id: string
-  membres?: Entry<{
-    nom: string
-    titre: string
-    entreprise: string
-    entrepriseLink: string
-    photo: Asset
-  }>[]
-}
-
-interface Articles {
-  titre: string
-  id: string
-  tag?: string
-  articles: Entry<Article>[]
-}
+import { TypeArticlesSkeleton, TypeCardsSkeleton, TypeHeroSkeleton, TypeMembresSkeleton, TypeTextSkeleton, TypeTextsSkeleton } from '@/clients/content_types'
 
 export function renderText(text: Document) {
-  return documentToReactComponents(text)
+  return documentToReactComponents(text, options)
 }
 
 export const Contenu: FunctionComponent<{
-  contenu: Entry<any>[]
+  contenu: Entry<TypeArticlesSkeleton | TypeCardsSkeleton | TypeMembresSkeleton | TypeTextSkeleton | TypeTextsSkeleton | TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>[]
 }> = ({ contenu }) => {
 
   return (
@@ -83,11 +33,12 @@ export const Contenu: FunctionComponent<{
           className={[styles[item.sys.contentType.sys.id], 'layout' in item.fields && styles[item.fields.layout], 'background' in item.fields && styles.background, item.fields.dark && styles.dark].filter(s => s).join(' ')}
         >
           {{
-            'text': <Text item={item as Entry<Text>} first={i === 0} card />,
-            'texts': <Texts item={item as Entry<Texts>} />,
-            'membres': <Membres item={item as Entry<Membres>} />,
-            'articles': <Articles item={item as Entry<Articles>} />,
-            'cards': <Cards item={item as Entry<Articles>} />,
+            'hero': <Hero item={item as Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} first={i === 0} />,
+            'text': <Text item={item as Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} first={i === 0} card />,
+            'texts': <Texts item={item as Entry<TypeTextsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
+            'membres': <Membres item={item as Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
+            'articles': <Articles item={item as Entry<TypeArticlesSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
+            'cards': <Cards item={item as Entry<TypeCardsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
           }[item.sys.contentType.sys.id]}
         </section>
       )}
@@ -95,8 +46,24 @@ export const Contenu: FunctionComponent<{
   );
 }
 
+export const Hero: FunctionComponent<{
+  item: Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
+  first?: boolean
+}> = ({ item }) => {
+  return  (
+    <div className={styles.content}>
+      <figure>
+        {item.fields.media && <Media media={item.fields.media} />}
+        {item.fields.caption && <figcaption>
+            {renderText(item.fields.caption)}
+        </figcaption>}
+      </figure>
+    </div>
+  );
+}
+
 export const Text: FunctionComponent<{
-  item: Entry<Text>
+  item: Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
   first?: boolean
   card?: boolean
 }> = ({ item, first, card }) => {
@@ -127,7 +94,7 @@ export const Text: FunctionComponent<{
 }
 
 export const Texts: FunctionComponent<{
-  item: Entry<Texts>
+  item: Entry<TypeTextsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ item }) => {
   return (
     <>
@@ -140,15 +107,15 @@ export const Texts: FunctionComponent<{
       } as React.CSSProperties}>
         <hr />
         {text.sys.contentType.sys.id === 'text'
-          ? <Text item={text as Entry<Text>} />
-          : <Cards item={text} />}
+          ? <Text item={text as Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />
+          : <Cards item={text as Entry<TypeCardsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />}
       </article>)}
     </>
   );
 }
 
 export const Cards: FunctionComponent<{
-  item: Entry<Cards>
+  item: Entry<TypeCardsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ item }) => {
   const [visible, setVisible] = useState<string>()
   return  <>
@@ -172,7 +139,7 @@ export const Cards: FunctionComponent<{
 }
 
 export const Membres: FunctionComponent<{
-  item: Entry<Membres>
+  item: Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ item }) => {
   return  <>
     {/* {item.fields.titre && <h3>{item.fields.titre}</h3>} */}
@@ -200,7 +167,7 @@ export const Membres: FunctionComponent<{
 }
 
 export const Articles: FunctionComponent<{
-  item: Entry<Articles>
+  item: Entry<TypeArticlesSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ item }) => {
   const { locale } = useRouter()
 
@@ -212,4 +179,27 @@ export const Articles: FunctionComponent<{
       <center><Link href={`/articles/${item.fields.tag}`}><Button label='Voir tous' /></Link></center>
     </>
   );
+}
+
+const options: Options = {
+  renderMark: {
+    [MARKS.CODE]: (text) => {
+      return <span dangerouslySetInnerHTML={{ __html: text.toString() }} />
+    }
+  },
+  renderNode: {
+    [INLINES.ASSET_HYPERLINK]: (node) => {
+      return <a href={node.data.target.fields.file.url} className='underline' target='_blank'>{node.content[0].value}</a>
+    },
+    [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      return <figure>
+        <Media media={node.data.target} />
+      </figure>
+    },
+    [INLINES.EMBEDDED_ENTRY]: (node) => {
+      return {
+        // embeddedInfo: <EmbeddedInfo key={node.data.target.sys.id} {...node.data.target.fields} />
+      }[node.data.target.sys.contentType.sys.id]
+    },
+  }
 }

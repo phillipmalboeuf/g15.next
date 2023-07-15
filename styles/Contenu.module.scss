@@ -39,6 +39,15 @@
     max-width: calc(var(--max-width) * 0.88);
   }
 
+  figure {
+    margin: calc(var(--gap) * 1.5) 0;
+
+    img[alt="G15+ logo "] {
+      width: calc(var(--gap) * 2);
+      margin: 0 auto;
+    }
+  }
+
   &.background {
     position: relative;
     display: flex;
@@ -138,6 +147,70 @@
 
   &.Small {
     // background-color: red;
+  }
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  padding: calc(var(--gap)) 0;
+  min-height: calc(50vw - var(--gap));
+  width: 100%;
+  margin: 0;
+  max-width: none;
+  align-items: end;
+
+  figcaption {
+    position: relative;
+    z-index: 1;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  picture {
+    position: absolute;
+    z-index: 0;
+    margin: 0;
+
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+
+    img {
+      width: 100vw;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &.dark {
+    color: white;
+    background-color: var(--highlight-color);
+
+    button {
+      color: var(--alt-color);
+    }
+
+    svg {
+      path {
+        stroke: currentColor !important;
+        fill: transparent !important;
+      }
+    }
+
+    figure {
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(31, 33, 41, 0.6) 0%, #1F2129 75%);
+      }
+    }
   }
 }
 

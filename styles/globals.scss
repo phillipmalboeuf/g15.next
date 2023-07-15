@@ -6,6 +6,7 @@
   --highlight-color: #1F2129;
   --alt-color: #F7D152;
   --lowlight-color: #fbfbf8;
+  --logo-color: #0048AA;
 
   @media (max-width: 888px) {
     --gap: calc(var(--base) * 2);
@@ -120,4 +121,8 @@ audio {
   display: block;
   width: 100%;
   max-width: 100%;
+}
+
+figure {
+  margin: 0 auto var(--base);
 }
