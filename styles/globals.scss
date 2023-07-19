@@ -61,7 +61,7 @@ h1 {
   }
 }
 
-h2 {
+h2, .h2 {
   font-family: var(--font-editorial);
   font-size: 54px;
   font-weight: 500;
@@ -71,13 +71,13 @@ h2 {
   }
 }
 
-h3 {
+h3, .h3 {
   font-size: 40px;
   font-weight: 500; 
 }
 
-h4 {
-  font-size: 20px;
+h4, .h4 {
+  font-size: 24px;
   font-weight: 500;
 }
 

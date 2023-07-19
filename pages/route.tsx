@@ -4,17 +4,21 @@ import Head from 'next/head'
 import styles from '@/styles/Page.module.scss'
 import { Entry } from 'contentful'
 import { ContentService, getPageProps, Navigations } from '@/services/content'
-import { Contenu } from '@/components/Contenu'
-import { TypePageSkeleton } from '@/clients/content_types'
+import { Contenu, renderText } from '@/components/Contenu'
+import { TypePageSkeleton, TypePilierSkeleton, TypePiliersSkeleton } from '@/clients/content_types'
+import { useRouter } from 'next/router'
+import { contentful } from '@/clients/contentful'
+import { Propositions } from '@/components/Propositions'
 
 interface Props {
   id: string
   title: string
   page: Entry<TypePageSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
   navigation?: Navigations
+  piliers?: Entry<TypePiliersSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }
 
-const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
+const Route: FunctionComponent<Props> = ({ title, page, piliers }) => {
   return (
     page && <>
       <Head>
@@ -23,20 +27,21 @@ const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
       </Head>
       <main className={styles.main}>
         <Contenu contenu={page.fields.contenu} />
+        <Propositions piliers={piliers} />
       </main>
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps<Props, { page: string }> = async (context) => {
-  return await getPageProps(context, context.params.page)
-}
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const { props } = await getPageProps(context, 'route')
 
-export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: ['/vision', '/membres'],
-    fallback: true
+    props: {
+      ...props,
+      piliers: await contentful.getEntry('1lwe6M1hX8QV9Fgraq8lX4', { include: 4 })
+    }
   }
 }
 
-export default Page
+export default Route

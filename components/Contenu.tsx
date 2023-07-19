@@ -14,14 +14,16 @@ import { Media } from './Media'
 import TitleCard from './TitleCard'
 import Button from './Button'
 import { CardPopup, CardsPopup } from './CardsPopup'
-import { TypeArticlesSkeleton, TypeCardsSkeleton, TypeHeroSkeleton, TypeMembresSkeleton, TypeTextSkeleton, TypeTextsSkeleton } from '@/clients/content_types'
+import { TypeArticlesSkeleton, TypeCardsSkeleton, TypeHeroSkeleton, TypeMembresSkeleton, TypePiliersSkeleton, TypeTextSkeleton, TypeTextsSkeleton } from '@/clients/content_types'
+import { Membres } from './Membres'
+import { Piliers } from './Piliers'
 
 export function renderText(text: Document) {
   return documentToReactComponents(text, options)
 }
 
 export const Contenu: FunctionComponent<{
-  contenu: Entry<TypeArticlesSkeleton | TypeCardsSkeleton | TypeMembresSkeleton | TypeTextSkeleton | TypeTextsSkeleton | TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>[]
+  contenu: Entry<TypeArticlesSkeleton | TypeCardsSkeleton | TypeMembresSkeleton | TypePiliersSkeleton | TypeTextSkeleton | TypeTextsSkeleton | TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>[]
 }> = ({ contenu }) => {
 
   return (
@@ -37,6 +39,7 @@ export const Contenu: FunctionComponent<{
             'text': <Text item={item as Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} first={i === 0} card />,
             'texts': <Texts item={item as Entry<TypeTextsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
             'membres': <Membres item={item as Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
+            'piliers': <Piliers item={item as Entry<TypePiliersSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
             'articles': <Articles item={item as Entry<TypeArticlesSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
             'cards': <Cards item={item as Entry<TypeCardsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
           }[item.sys.contentType.sys.id]}
@@ -75,10 +78,10 @@ export const Text: FunctionComponent<{
 
       {item.fields.titre && 
         (first
-          ? <h1>{item.fields.titre}</h1>
+          ? <h1 className='h3'>{item.fields.titre}</h1>
           : card
             ? <TitleCard label={item.fields.titre} />
-            : <h2>{item.fields.titre}</h2>)
+            : <h3>{item.fields.titre}</h3>)
       }
       {item.fields.text && <div>
         {renderText(item.fields.text)}
@@ -135,34 +138,6 @@ export const Cards: FunctionComponent<{
       </ul>
   </div>
     {visible && <CardPopup card={item.fields.cards.find(c => c.fields.id === visible)} onHide={() => setVisible(undefined)} visible={visible} />}
-  </>
-}
-
-export const Membres: FunctionComponent<{
-  item: Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
-}> = ({ item }) => {
-  return  <>
-    {/* {item.fields.titre && <h3>{item.fields.titre}</h3>} */}
-    {item.fields.membres && <ul className={styles.membres}>
-      {item.fields.membres.map((membre, i) => <li key={i} style={{
-          width: `calc((var(--gap) * 3) + ${(Math.random() * 40)-40}px)`,
-          height: `calc((var(--gap) * 3) + ${(Math.random() * 40)-40}px)`,
-          margin: `${(Math.random() * 40)-40}px)`,
-          alignItems: ['start', 'center', 'end'][Math.floor(Math.random() * 3)]
-        }}>
-        <figure>
-          {membre.fields.photo && <Media media={membre.fields.photo} ar={1} />}
-          <figcaption>
-            <h5>{membre.fields.nom}</h5>
-            <em>{membre.fields.titre}</em><br /><br />
-            <Link href={membre.fields.entrepriseLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            ><u>{membre.fields.entreprise}</u></Link>
-          </figcaption>
-        </figure>
-      </li>)}
-    </ul>}
   </>
 }
 

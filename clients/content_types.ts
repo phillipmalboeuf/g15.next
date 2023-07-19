@@ -44,6 +44,7 @@ export type TypeCards<Modifiers extends ChainModifiers, Locales extends LocaleCo
 export interface TypeHeroFields {
     id?: EntryFieldTypes.Symbol;
     media?: EntryFieldTypes.AssetLink;
+    dark?: EntryFieldTypes.Boolean;
     caption?: EntryFieldTypes.RichText;
 }
 
@@ -94,11 +95,30 @@ export interface TypePageFields {
     titre: EntryFieldTypes.Symbol;
     id: EntryFieldTypes.Symbol;
     description?: EntryFieldTypes.Text;
-    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticlesSkeleton | TypeCardsSkeleton | TypeHeroSkeleton | TypeMembresSkeleton | TypeTextSkeleton | TypeTextsSkeleton>>;
+    contenu?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeArticlesSkeleton | TypeCardsSkeleton | TypeHeroSkeleton | TypeMembresSkeleton | TypePiliersSkeleton | TypeTextSkeleton | TypeTextsSkeleton>>;
 }
 
 export type TypePageSkeleton = EntrySkeletonType<TypePageFields, "page">;
 export type TypePage<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePageSkeleton, Modifiers, Locales>;
+
+export interface TypePilierFields {
+    titre?: EntryFieldTypes.Symbol;
+    id: EntryFieldTypes.Symbol;
+    media?: EntryFieldTypes.AssetLink;
+    cta?: EntryFieldTypes.Symbol;
+    propositions?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeTextSkeleton>>;
+}
+
+export type TypePilierSkeleton = EntrySkeletonType<TypePilierFields, "pilier">;
+export type TypePilier<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePilierSkeleton, Modifiers, Locales>;
+
+export interface TypePiliersFields {
+    id?: EntryFieldTypes.Symbol;
+    piliers?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypePilierSkeleton>>;
+}
+
+export type TypePiliersSkeleton = EntrySkeletonType<TypePiliersFields, "piliers">;
+export type TypePiliers<Modifiers extends ChainModifiers, Locales extends LocaleCode> = Entry<TypePiliersSkeleton, Modifiers, Locales>;
 
 export interface TypeTextFields {
     titre?: EntryFieldTypes.Symbol;

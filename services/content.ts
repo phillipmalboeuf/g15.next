@@ -3,7 +3,7 @@ import type { Asset, Entry, EntryCollection } from 'contentful'
 import { contentful } from '@/clients/contentful'
 import { GetStaticPropsContext } from 'next'
 
-import { TypeArticleSkeleton, TypeLinkSkeleton, TypeNavigationSkeleton, TypePageSkeleton } from '@/clients/content_types'
+import { TypeArticleSkeleton, TypeArticlesFields, TypeArticlesSkeleton, TypeLinkSkeleton, TypeNavigationSkeleton, TypePageSkeleton } from '@/clients/content_types'
 
 export interface Navigations {
   header: Entry<TypeNavigationSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
