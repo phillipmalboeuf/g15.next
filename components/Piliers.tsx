@@ -19,7 +19,7 @@ export const Piliers: FunctionComponent<{
     {item.fields.piliers && <ul className={[styles.piliers, router.query.pilier ? styles.queried : null].join(' ')}>
       {item.fields.piliers.map((pilier, i) => <li key={i} style={{}} className={router.query.pilier === pilier.fields.id ? styles.active : null}>
         <figure>
-          <Link href={`/route?pilier=${pilier.fields.id}#${item.fields.id}`}>{pilier.fields.media && <Media media={pilier.fields.media} ar={1} />}</Link>
+          <Link href={`/route?pilier=${pilier.fields.id}#${item.fields.id}`}>{pilier.fields.media && <Media media={pilier.fields.media} ar={1} eager />}</Link>
           <figcaption>
             <h4>{pilier.fields.titre}</h4>
             <Link href={`/route?pilier=${pilier.fields.id}#${item.fields.id}`}><u>{pilier.fields.cta}</u></Link>

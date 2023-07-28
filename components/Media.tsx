@@ -14,7 +14,7 @@ export const Media: FunctionComponent<{
   if (!media) return
 
   if (media.fields.file.contentType?.startsWith('video/')) {
-    return <video src={media.fields.file.url} autoPlay={eager} muted={eager} loop={eager}></video>
+    return <picture><video src={media.fields.file.url} autoPlay={eager} muted={eager} loop={eager} playsInline={eager} controls={!eager} style={ar && { aspectRatio: 1800 / Math.round(ar * 1800), objectFit: "cover" }}></video></picture>
   }
 
   if (media.fields.file.contentType?.startsWith('audio/')) {

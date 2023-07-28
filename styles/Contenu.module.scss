@@ -79,7 +79,8 @@
       width: 100vw;
       height: 100%;
 
-      img {
+      img,
+      video {
         width: 100vw;
         height: 100%;
         object-fit: cover;
@@ -151,8 +152,8 @@
 .hero {
   position: relative;
   display: flex;
-  padding: calc(var(--gap)) 0;
-  min-height: calc(50vw - var(--gap));
+  padding: calc(var(--gap) / 2) 0;
+  min-height: calc(45vw - var(--gap));
   width: 100%;
   margin: 0;
   max-width: none;
@@ -164,6 +165,8 @@
     max-width: var(--max-width);
     margin: 0 auto;
     text-align: center;
+
+    color: white;
   }
 
   picture {
@@ -176,7 +179,8 @@
     width: 100vw;
     height: 100%;
 
-    img {
+    img,
+    video {
       width: 100vw;
       height: 100%;
       object-fit: cover;
@@ -184,7 +188,7 @@
   }
 
   &.dark {
-    color: white;
+    
     background-color: var(--highlight-color);
 
     button {
@@ -249,7 +253,8 @@
         margin: 0;
         // width: calc(var(--gap) * 2);
 
-        img {
+        img,
+        video {
           // width: calc(var(--gap) * 3);
           // height: calc(var(--gap) * 3);
           // object-fit: cont;
@@ -334,7 +339,8 @@
         margin: 0;
         // width: calc(var(--gap) * 2);
 
-        img {
+        img,
+        video {
           // width: calc(var(--gap) * 3);
           // height: calc(var(--gap) * 3);
           // object-fit: cont;
