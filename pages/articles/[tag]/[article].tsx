@@ -26,7 +26,7 @@ const Article: FunctionComponent<Props> = ({ title, tag, article, navigation }) 
         <meta name="description" content={article.fields.excerpt} />
       </Head>
       <main className={styles.article}>
-        <h1>{article.fields.titre}<br /><ArticleDate article={article} /></h1>
+        <h1 className='h2'>{article.fields.titre}<br /><ArticleDate article={article} /></h1>
         <nav>{article.fields.tags?.map(tag => <Link key={tag} href={`/articles/${tag}`}>#{tag}</Link>)}</nav>
         <article>{article.fields.text && renderText(article.fields.text)}</article>
       </main>
