@@ -16,6 +16,7 @@ interface Props {
 }
 
 const Articles: FunctionComponent<Props> = ({ title, tag, articles, navigation }) => {
+  console.log(tag)
   return (
     articles && <>
       <Head>
@@ -48,7 +49,7 @@ export const getStaticProps: GetStaticProps<Props, { tag: string }> = async (con
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: ['/articles/press'],
+    paths: ['/articles/presse'],
     fallback: true
   }
 }
