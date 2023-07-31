@@ -7,6 +7,8 @@ import { Media } from './Media'
 
 import styles from '@/styles/Contenu.module.scss'
 
+const random = 75
+
 export const Membres: FunctionComponent<{
   item: Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
 }> = ({ item }) => {
@@ -14,9 +16,9 @@ export const Membres: FunctionComponent<{
     {/* {item.fields.titre && <h3>{item.fields.titre}</h3>} */}
     {item.fields.membres && <ul className={styles.membres}>
       {item.fields.membres.map((membre, i) => <li key={i} style={{
-          width: `calc((var(--gap) * 3) + ${(Math.random() * 40)-40}px)`,
-          height: `calc((var(--gap) * 3) + ${(Math.random() * 40)-40}px)`,
-          margin: `${(Math.random() * 40)-40}px)`,
+          width: `calc((var(--base) * 12) + ${(Math.random() * random)-random}px)`,
+          height: `calc((var(--base) * 12) + ${(Math.random() * random)-random}px)`,
+          margin: `${(Math.random() * random)-random}px)`,
           alignItems: ['start', 'center', 'end'][Math.floor(Math.random() * 3)]
         }}>
         <figure>

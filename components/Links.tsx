@@ -8,13 +8,15 @@ export const Links: FunctionComponent<{
   links: Entry<TypeLinkSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">[]
   buttons?: boolean
   emails?: boolean
-}> = ({ links, buttons, emails }) => {
+  onClick?: () => void
+}> = ({ links, buttons, emails, onClick }) => {
   return <>
     {links.map((link, i) => 
     <Fragment key={i}>
       {link.fields.link
         ? <Link 
             href={link.fields.link}
+            onClick={onClick}
             {...link.fields.external && {
               target: "_blank",
               rel: "noopener noreferrer"
@@ -33,6 +35,7 @@ export const Links: FunctionComponent<{
           <Links
             links={link.fields.subLinks}
             emails
+            onClick={onClick}
           />  
         </nav>
       )}

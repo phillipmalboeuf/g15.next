@@ -1,7 +1,7 @@
 :root {
   --base: 16px;
   --gap: calc(var(--base) * 3.5);
-  --max-width: 1200px;
+  --max-width: min(1200px, 95vw);
   --base-color: #1D1D1F;
   --highlight-color: #1F2129;
   --alt-color: #F7D152;
@@ -53,6 +53,10 @@ main[role="main"] {
 h1, h2, h3, h4, h5, h6, p {
   margin: 0 0 var(--base);
   white-space: pre-line;
+}
+
+h1, h2, h3 {
+  margin-bottom: calc(var(--base) * 2);
 }
 
 h1 {

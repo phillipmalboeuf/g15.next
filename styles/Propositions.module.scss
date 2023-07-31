@@ -16,6 +16,7 @@
 
   > li {
     padding: calc(var(--gap) / 3) calc(var(--gap) * 2);
+    @media (max-width: 888px) { padding: calc(var(--gap) / 3) calc(var(--gap) / 2); }
     width: 100%;
     border-top: 1px solid;
     // max-width: var(--max-width);
@@ -24,6 +25,7 @@
 
       article {
         max-width: calc(var(--max-width) / 1.5);
+        @media (max-width: 888px) { max-width: calc(var(--max-width) / 1); }
         margin: calc(var(--gap) / 2) 0;
       }
 
@@ -52,6 +54,7 @@
           display: flex;
           justify-content: space-between;
           margin-bottom: 0.5rem;
+          @media (max-width: 888px) { font-size: 30px; }
         }
 
         h3:after {

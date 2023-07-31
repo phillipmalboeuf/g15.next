@@ -53,7 +53,7 @@ const Menu: FunctionComponent<{
   return <div className={styles.menu}>
     <Button label={'Menu'} icon='menu' onClick={() => setVisible(!visible)} />
     {visible && <nav id={nav.fields.id}>
-      <Links links={nav.fields.links} />
+      <Links links={nav.fields.links} onClick={() => setVisible(!visible)} />
       <Link href='https://www.indicateurs.quebec'><Button label='Les indicateurs' /></Link>
     </nav>}
   </div>

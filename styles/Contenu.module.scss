@@ -2,7 +2,7 @@
 .membres,
 .texts,
 .articles {
-  margin: calc(var(--gap) / 2) 0;
+  margin: calc(var(--gap) / 1) 0;
   width: 100%;
   max-width: var(--max-width);
 
@@ -29,18 +29,23 @@
   }
 
   p {
-    font-size: calc(var(--base) * 1.5);
+    font-size: calc(var(--base) * 1.333);
     @media (max-width: 888px) { font-size: calc(var(--base) * 1.15); }
+
+    a {
+      font-weight: 500;
+    }
   }
 
   p,
   h1,
   h2 {
-    max-width: calc(var(--max-width) * 0.88);
+    max-width: calc(var(--max-width) * 0.66);
+    @media (max-width: 888px) { max-width: var(--max-width); }
   }
 
   figure {
-    margin: calc(var(--gap) * 1.5) 0;
+    margin: calc(var(--gap) * 1) 0;
 
     img[alt="G15+ logo "] {
       width: calc(var(--gap) * 2);
@@ -64,6 +69,7 @@
 
     h1,
     h2,
+    h3,
     div,
     nav {
       z-index: 1;
@@ -138,9 +144,11 @@
 
     p {
       font-size: calc(var(--base) * 3);
+      max-width: calc(var(--max-width) * 0.88);
       margin-left: auto;
       margin-right: auto; 
       @media (max-width: 888px) { font-size: calc(var(--base) * 1.5); }
+      @media (max-width: 888px) { max-width: var(--max-width); }
       // font-weight: 500;
     }
   }
@@ -154,10 +162,12 @@
   display: flex;
   padding: calc(var(--gap) / 2) 0;
   min-height: calc(45vw - var(--gap));
+  @media (max-width: 888px) { min-height: calc(40vh - var(--gap)); }
   width: 100%;
   margin: 0;
   max-width: none;
-  align-items: end;
+  align-items: flex-end;
+  background-color: var(--highlight-color);
 
   figcaption {
     position: relative;
@@ -224,7 +234,7 @@
     margin: calc(var(--gap) * 1) 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap-reverse;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     // max-width: var(--max-width);
@@ -235,7 +245,7 @@
     &:hover {
       li {
         opacity: 0.05;
-        filter: blur(2px);
+        // filter: blur(2px);
       }
     }
 
@@ -282,7 +292,7 @@
 
       &:hover {
         opacity: 1;
-        filter: none;
+        // filter: none;
 
         figcaption {
           opacity: 1;
@@ -301,7 +311,8 @@
 
   ul {
     list-style: none;
-    margin: calc(var(--gap) * 2);
+    margin: calc(var(--gap) * 1) calc(var(--gap) * 2) calc(var(--gap) * 2);
+    @media (max-width: 888px) { margin: calc(var(--gap) * 1) calc(var(--gap) / 2) calc(var(--gap) * 2); }
     padding: 0;
     display: flex;
     flex-wrap: wrap-reverse;

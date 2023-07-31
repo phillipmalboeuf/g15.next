@@ -4,7 +4,7 @@ import Head from 'next/head'
 import styles from '@/styles/Articles.module.scss'
 import { Entry, EntryCollection } from 'contentful'
 import { ContentService, Navigations } from '@/services/content'
-import { Articles as ArticlesList } from '@/components/Articles'
+import { Articles as ArticlesList, tags } from '@/components/Articles'
 import Link from 'next/link'
 import { TypeArticleSkeleton } from '@/clients/content_types'
 
@@ -15,19 +15,15 @@ interface Props {
   navigation: Navigations
 }
 
-const tags = {
-  presse: 'Salle de presse'
-}
-
 const Articles: FunctionComponent<Props> = ({ title, tag, articles, navigation }) => {
   return (
     articles && <>
       <Head>
-        <title>{tags[tag] || tag} – {title}</title>
-        <meta name="description" content={tags[tag] || tag} />
+        <title>{tags[tag].title || tag} – {title}</title>
+        <meta name="description" content={tags[tag].title || tag} />
       </Head>
       <main className={styles.articles}>
-        <h1>{tags[tag] || tag}</h1>
+        <h1 className='h3'>{tags[tag].title || `#${tag}`}</h1>
         <ArticlesList tag={tag} articles={articles.items} />
       </main>
     </>

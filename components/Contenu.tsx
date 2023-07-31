@@ -79,9 +79,7 @@ export const Text: FunctionComponent<{
       {item.fields.titre && 
         (first
           ? <h1 className='h3'>{item.fields.titre}</h1>
-          : card
-            ? <TitleCard label={item.fields.titre} />
-            : <h3>{item.fields.titre}</h3>)
+          : <h3>{item.fields.titre}</h3>)
       }
       {item.fields.text && <div>
         {renderText(item.fields.text)}

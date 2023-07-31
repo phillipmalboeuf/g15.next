@@ -7,6 +7,25 @@ import styles from '@/styles/Articles.module.scss'
 import { Media } from './Media'
 import { TypeArticleSkeleton } from '@/clients/content_types'
 
+export const tags = {
+  presse: {
+    title: 'Nos publications',
+    color: '#1D1F27'
+  },
+  communiqué: {
+    title: 'Nos communiqués',
+    color: '#61C454'
+  },
+  mémoire: {
+    title: 'Nos mémoires',
+    color: '#2D303C'
+  },
+  tweet: {
+    title: 'Nos Tweets',
+    color: '#1DA1F2'
+  },
+}
+
 export const Articles: FunctionComponent<{
   tag: string
   articles: Entry<TypeArticleSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">[]
@@ -14,6 +33,9 @@ export const Articles: FunctionComponent<{
   return  <>
     {articles && <ol className={styles.list}>
       {articles.map((article, i) => <li key={i}>
+        <nav style={{
+          background: tags[article.fields.tags?.filter(t => t !== 'presse')[0]]?.color
+        }}>{article.fields.tags?.filter(t => t !== 'presse').map(t => <Link key={t} href={`/articles/${t}`}>{t}</Link>)}</nav>
         <Link href={`/articles/${tag}/${article.fields.id}`}>
           <figure>
             <Media media={article.fields.photo} ar={1} />
