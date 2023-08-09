@@ -14,15 +14,15 @@ export const tags = {
   },
   communiqué: {
     title: 'Nos communiqués',
-    color: '#61C454'
+    color: '#3A795E'
   },
   mémoire: {
     title: 'Nos mémoires',
-    color: '#2D303C'
+    color: '#67778A'
   },
   tweet: {
     title: 'Nos Tweets',
-    color: '#1DA1F2'
+    color: '#55ACEE'
   },
 }
 

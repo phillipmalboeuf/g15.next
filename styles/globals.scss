@@ -5,7 +5,8 @@
   --base-color: #1D1D1F;
   --highlight-color: #1F2129;
   --alt-color: #F7D152;
-  --lowlight-color: #fbfbf8;
+  --lowlight-color: #f8f3e8;
+  --lowlight-alt-color: #fff;
   --logo-color: #0048AA;
 
   @media (max-width: 888px) {
@@ -35,7 +36,6 @@ body {
   padding: 0;
   margin: 0;
 
-  background: var(--lowlight-color);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -47,6 +47,7 @@ body {
 }
 
 main[role="main"] {
+  background: var(--lowlight-color);
   font-family: var(--font-montreal);
 }
 
