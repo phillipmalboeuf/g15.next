@@ -10,6 +10,7 @@ import { Footer } from '@/components/Footer'
 import { Contenu, renderText } from '@/components/Contenu'
 import { ArticleDate } from '@/components/Articles'
 import { TypeArticleSkeleton } from '@/clients/content_types'
+import { Media } from '@/components/Media'
 
 interface Props {
   tag: string
@@ -27,6 +28,9 @@ const Article: FunctionComponent<Props> = ({ title, tag, article, navigation }) 
       </Head>
       <main className={styles.article}>
         <h1 className='h2'>{article.fields.titre}<br /><ArticleDate article={article} /></h1>
+        {article.fields.photo && <figure>
+          <Media media={article.fields.photo} ar={0.33} />
+        </figure>}
         <nav>{article.fields.tags?.map(tag => <Link key={tag} href={`/articles/${tag}`}>#{tag}</Link>)}</nav>
         <article>{article.fields.text && renderText(article.fields.text)}</article>
       </main>

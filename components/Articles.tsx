@@ -37,9 +37,9 @@ export const Articles: FunctionComponent<{
           background: tags[article.fields.tags?.filter(t => t !== 'presse')[0]]?.color
         }}>{article.fields.tags?.filter(t => t !== 'presse').map(t => <Link key={t} href={`/articles/${t}`}>{t}</Link>)}</nav>
         <Link href={`/articles/${tag}/${article.fields.id}`}>
-          <figure>
+          {article.fields.photo && <figure>
             <Media media={article.fields.photo} ar={1} />
-          </figure>
+          </figure>}
           <h5>{article.fields.titre}</h5>
           <ArticleDate article={article} />
         </Link>

@@ -68,6 +68,14 @@
     justify-content: center;
   }
 
+  figure {
+    margin: 0;
+
+    img {
+      object-fit: cover;
+    }
+  }
+
   article {
     max-width: calc(var(--max-width) / 1.5);
     margin: 0 auto;
