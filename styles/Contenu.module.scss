@@ -300,6 +300,14 @@
           visibility: visible;
         }
       }
+
+      &.logo {
+        figure {
+          img {
+            object-fit: contain;
+          }
+        }
+      }
     }
   }
 

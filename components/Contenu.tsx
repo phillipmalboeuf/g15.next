@@ -26,6 +26,8 @@ export const Contenu: FunctionComponent<{
   contenu: Entry<TypeArticlesSkeleton | TypeCardsSkeleton | TypeMembresSkeleton | TypePiliersSkeleton | TypeTextSkeleton | TypeTextsSkeleton | TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS", string>[]
 }> = ({ contenu }) => {
 
+  const { pathname } = useRouter()
+
   return (
     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
       {contenu?.map((item, i) =>
@@ -38,7 +40,7 @@ export const Contenu: FunctionComponent<{
             'hero': <Hero item={item as Entry<TypeHeroSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} first={i === 0} />,
             'text': <Text item={item as Entry<TypeTextSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} first={i === 0} card />,
             'texts': <Texts item={item as Entry<TypeTextsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
-            'membres': <Membres item={item as Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
+            'membres': <Membres item={item as Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} logo={pathname === '/'} />,
             'piliers': <Piliers item={item as Entry<TypePiliersSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
             'articles': <Articles item={item as Entry<TypeArticlesSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,
             'cards': <Cards item={item as Entry<TypeCardsSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">} />,

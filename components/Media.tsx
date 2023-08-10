@@ -5,7 +5,9 @@ export const Media: FunctionComponent<{
   media: Asset<"WITHOUT_UNRESOLVABLE_LINKS">
   eager?: boolean
   ar?: number
-}> = ({ media, eager, ar }) => {
+  contain?: boolean
+  padding?: number
+}> = ({ media, eager, ar, contain, padding }) => {
 
   function cdn(url: string) {
     return url.replace(`//images.ctfassets.net/fpl9h4np0egs`, '//g15.imgix.net')
@@ -23,9 +25,9 @@ export const Media: FunctionComponent<{
 
   return (
     <picture>
-      <source srcSet={cdn(media.fields.file.url) + "?auto=compress,format&w=900" + (ar ? `&h=${Math.round(ar * 900)}&fit=crop` : '')} media="(max-width: 900px)" />
-      <source srcSet={cdn(media.fields.file.url) + "?auto=compress,format&w=1200" + (ar ? `&h=${Math.round(ar * 1200)}&fit=crop` : '')} media="(max-width: 1200px)" />
-      <img src={cdn(media.fields.file.url) + "?auto=compress,format&w=1800" + (ar ? `&h=${Math.round(ar * 1800)}&fit=crop` : '')} style={ar && { aspectRatio: 1800 / Math.round(ar * 1800) }} alt={`${media.fields.title} ${media.fields.description}`} loading={eager ? "eager" : "lazy"} />
+      <source srcSet={cdn(media.fields.file.url) + "?auto=compress,format&w=900" + (ar ? `&h=${Math.round(ar * 900)}&fit=${contain ? 'fill' : 'crop'}` : '') + (padding ? `&pad=${padding}` : '')} media="(max-width: 900px)" />
+      <source srcSet={cdn(media.fields.file.url) + "?auto=compress,format&w=1200" + (ar ? `&h=${Math.round(ar * 1200)}&fit=${contain ? 'fill' : 'crop'}` : '') + (padding ? `&pad=${padding}` : '')} media="(max-width: 1200px)" />
+      <img src={cdn(media.fields.file.url) + "?auto=compress,format&w=1800" + (ar ? `&h=${Math.round(ar * 1800)}&fit=${contain ? 'fill' : 'crop'}` : '') + (padding ? `&pad=${padding}` : '')} style={ar && { aspectRatio: 1800 / Math.round(ar * 1800) }} alt={`${media.fields.title} ${media.fields.description}`} loading={eager ? "eager" : "lazy"} />
     </picture>
   );
 }

@@ -8,6 +8,7 @@ export interface TypeArticleFields {
     photo?: EntryFieldTypes.AssetLink;
     excerpt?: EntryFieldTypes.Text;
     text?: EntryFieldTypes.RichText;
+    html?: EntryFieldTypes.Text;
 }
 
 export type TypeArticleSkeleton = EntrySkeletonType<TypeArticleFields, "article">;
@@ -66,6 +67,7 @@ export interface TypeMembreFields {
     nom: EntryFieldTypes.Symbol;
     titre?: EntryFieldTypes.Symbol;
     photo?: EntryFieldTypes.AssetLink;
+    logo?: EntryFieldTypes.AssetLink;
     entreprise?: EntryFieldTypes.Symbol;
     entrepriseLink?: EntryFieldTypes.Symbol;
 }
@@ -123,8 +125,8 @@ export type TypePiliers<Modifiers extends ChainModifiers, Locales extends Locale
 export interface TypeTextFields {
     titre?: EntryFieldTypes.Symbol;
     id?: EntryFieldTypes.Symbol;
-    layout?: EntryFieldTypes.Symbol<"Big" | "Hero" | "Small">;
     text?: EntryFieldTypes.RichText;
+    layout?: EntryFieldTypes.Symbol<"Big" | "Hero" | "Small">;
     couleur?: EntryFieldTypes.Symbol;
     background?: EntryFieldTypes.AssetLink;
     dark?: EntryFieldTypes.Boolean;
