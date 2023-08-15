@@ -20,10 +20,18 @@ export const tags = {
     title: 'Nos mémoires',
     color: '#67778A'
   },
+  nouvelle: {
+    title: 'Nos nouvelles',
+    color: '#968A84'
+  },
   tweet: {
     title: 'Nos Tweets',
     color: '#55ACEE'
   },
+  linkedin: {
+    title: 'LinkedIn',
+    color: '#0077B5'
+  }
 }
 
 export const Articles: FunctionComponent<{
