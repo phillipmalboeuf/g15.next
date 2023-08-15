@@ -12,7 +12,7 @@ export const tags = {
     title: 'Nos publications',
     color: '#1D1F27'
   },
-  communiqué: {
+  communiqués: {
     title: 'Nos communiqués',
     color: '#3A795E'
   },
@@ -35,8 +35,8 @@ export const Articles: FunctionComponent<{
       {articles.map((article, i) => <li key={i}>
         <nav style={{
           background: tags[article.fields.tags?.filter(t => t !== 'presse')[0]]?.color
-        }}>{article.fields.tags?.filter(t => t !== 'presse').map(t => <Link key={t} href={`/articles/${t}`}>{t}</Link>)}</nav>
-        <Link href={`/articles/${tag}/${article.fields.id}`}>
+        }}>{[...new Set(article.fields.tags)].filter(t => t !== 'presse' && tags[t]).map(t => <Link key={t} href={`/articles/${t}`}>{t}</Link>)}</nav>
+        <Link target={article.fields.id.startsWith('http') ? '_blank' : null} href={article.fields.id.startsWith('http') ? article.fields.id : `/articles/${tag}/${article.fields.id}`}>
           {article.fields.photo && <figure>
             <Media media={article.fields.photo} ar={1} />
           </figure>}

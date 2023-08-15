@@ -16,15 +16,15 @@ interface Props {
 }
 
 const Articles: FunctionComponent<Props> = ({ title, tag, articles, navigation }) => {
-  console.log(tag)
   return (
     articles && <>
       <Head>
-        <title>{tags[tag].title || tag} – {title}</title>
-        <meta name="description" content={tags[tag].title || tag} />
+        <title>{tags[tag]?.title || tag} – {title}</title>
+        <meta name="description" content={tags[tag]?.title || tag} />
       </Head>
       <main className={styles.articles}>
-        <h1 className='h3'>{tags[tag].title || `#${tag}`}</h1>
+        {tag !== 'presse' && <Link href={'/articles/presse'}><u>Retour</u></Link>}
+        <h1 className='h3'>{tags[tag]?.title || `#${tag}`}</h1>
         <ArticlesList tag={tag} articles={articles.items} />
       </main>
     </>

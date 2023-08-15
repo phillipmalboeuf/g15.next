@@ -27,12 +27,15 @@ const Article: FunctionComponent<Props> = ({ title, tag, article, navigation }) 
         <meta name="description" content={article.fields.excerpt} />
       </Head>
       <main className={styles.article}>
+        <center><Link href={`/articles/${tag}`}><u>Retour</u></Link></center>
         <h1 className='h2'>{article.fields.titre}<br /><ArticleDate article={article} /></h1>
         {article.fields.photo && <figure>
           <Media media={article.fields.photo} ar={0.33} />
         </figure>}
         <nav>{article.fields.tags?.map(tag => <Link key={tag} href={`/articles/${tag}`}>#{tag}</Link>)}</nav>
-        <article>{article.fields.text && renderText(article.fields.text)}</article>
+        <article>{article.fields.text
+          ? renderText(article.fields.text)
+          : article.fields.html && <div dangerouslySetInnerHTML={{__html: article.fields.html}} />}</article>
       </main>
     </>
   )

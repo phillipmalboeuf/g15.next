@@ -26,6 +26,7 @@
     nav {
       text-transform: capitalize;
       padding: calc(var(--base) / 2) calc(var(--base) / 1.33);
+      margin-bottom: calc(var(--base) / 2);
       color: white;
       background-color: var(--highlight-color);
     }
