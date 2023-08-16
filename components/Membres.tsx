@@ -7,7 +7,7 @@ import { Media } from './Media'
 
 import styles from '@/styles/Contenu.module.scss'
 
-const random = 75
+// const random = 40
 
 export const Membres: FunctionComponent<{
   item: Entry<TypeMembresSkeleton, "WITHOUT_UNRESOLVABLE_LINKS">
@@ -19,10 +19,13 @@ export const Membres: FunctionComponent<{
       {item.fields.membres.map((membre, i) => <li key={i}
         className={(logo && membre.fields.logo) ? styles.logo : null}
         style={{
-          width: `calc((var(--base) * 12) + ${(Math.random() * random)-random}px)`,
-          height: `calc((var(--base) * 12) + ${(Math.random() * random)-random}px)`,
-          margin: `${(Math.random() * random)-random}px)`,
-          alignItems: ['start', 'center', 'end'][Math.floor(Math.random() * 3)]
+          // width: `calc((var(--base) * 12) + ${(Math.random() * random)-random}px)`,
+          width: `calc((var(--base) * 12) + 0px)`,
+          // height: `calc((var(--base) * 12) + ${(Math.random() * random)-random}px)`,
+          height: `calc((var(--base) * 12) + 0px)`,
+          display: 'inline-block',
+          // margin: `calc(${(Math.random() * random)-random}px + (var(--base) * 0.5)) 0 calc(${(Math.random() * random)-random}px + (var(--base) * 0.5)) 0`,
+          // alignItems: ['start', 'center', 'end'][Math.floor(Math.random() * 3)]
         }}>
         <figure>
           {!logo 

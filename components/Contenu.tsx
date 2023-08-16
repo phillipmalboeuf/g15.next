@@ -59,7 +59,10 @@ export const Hero: FunctionComponent<{
     <div className={styles.content}>
       <figure>
         {item.fields.media && <Media media={item.fields.media} eager />}
-        {item.fields.caption && <figcaption>
+        {item.fields.titre ? <figcaption className={styles.titre}>
+          <h1 className='h2'>{item.fields.titre}</h1>
+        </figcaption>
+        : item.fields.caption && <figcaption>
             {renderText(item.fields.caption)}
         </figcaption>}
       </figure>

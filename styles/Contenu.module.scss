@@ -167,17 +167,23 @@
   width: 100%;
   margin: 0;
   max-width: none;
-  align-items: flex-end;
+  // align-items: flex-end;
   background-color: var(--highlight-color);
 
   figcaption {
     position: relative;
     z-index: 1;
-    max-width: var(--max-width);
+    max-width: calc(var(--max-width) / 1.5);
     margin: 0 auto;
     text-align: center;
 
     color: white;
+
+    &.titre {
+      h1 {
+        // font-weight: 700;
+      }
+    }
   }
 
   picture {

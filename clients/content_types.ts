@@ -46,6 +46,7 @@ export interface TypeHeroFields {
     id?: EntryFieldTypes.Symbol;
     media?: EntryFieldTypes.AssetLink;
     dark?: EntryFieldTypes.Boolean;
+    titre?: EntryFieldTypes.Symbol;
     caption?: EntryFieldTypes.RichText;
 }
 
