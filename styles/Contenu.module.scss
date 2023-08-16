@@ -238,7 +238,7 @@
 
   ul {
     list-style: none;
-    margin: calc(var(--gap) * 1) 0;
+    padding: calc(var(--gap) * 1) 0;
     padding: 0;
     display: flex;
     flex-wrap: wrap;
@@ -246,10 +246,12 @@
     align-items: center;
     // max-width: var(--max-width);
     gap: calc(var(--gap) / 4);
-    // overflow: hidden;
+    overflow: hidden;
     pointer-events: none;
 
     &:hover {
+      overflow: visible;
+      
       li {
         opacity: 0.05;
         // filter: blur(2px);
