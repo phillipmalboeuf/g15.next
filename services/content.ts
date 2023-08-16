@@ -80,6 +80,7 @@ export const getPageProps = async (context: GetStaticPropsContext, id: string) =
       title: 'g15plus.quebec',
       page,
       navigation,
-    }
+    },
+    revalidate: 1
   }
 }

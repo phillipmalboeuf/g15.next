@@ -43,7 +43,8 @@ export const getStaticProps: GetStaticProps<Props, { tag: string }> = async (con
       title: 'g15plus.quebec',
       articles,
       navigation,
-    }
+    },
+    revalidate: 1
   }
 }
 

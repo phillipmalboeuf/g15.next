@@ -53,7 +53,8 @@ export const getStaticProps: GetStaticProps<Props, { tag: string, article: strin
       title: 'g15plus.quebec',
       article,
       navigation,
-    }
+    },
+    revalidate: 1
   }
 }
 
