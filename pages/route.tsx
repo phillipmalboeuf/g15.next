@@ -40,7 +40,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     props: {
       ...props,
       piliers: await contentful.getEntry('1lwe6M1hX8QV9Fgraq8lX4', { include: 4 })
-    }
+    },
+    revalidate: 1
   }
 }
 
