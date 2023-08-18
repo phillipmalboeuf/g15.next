@@ -50,7 +50,7 @@ export const getStaticProps: GetStaticProps<Props, { tag: string }> = async (con
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: ['/articles/presse'],
+    paths: [],
     fallback: true
   }
 }

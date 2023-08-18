@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<Props, { page: string }> = async (co
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: ['/vision', '/membres'],
+    paths: [],
     fallback: true
   }
 }
