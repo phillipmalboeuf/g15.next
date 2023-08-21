@@ -108,7 +108,7 @@ export const Membres: FunctionComponent<{
       //   }
       // }}
     >
-      {item.fields.membres.map((membre, i) => <li key={i}
+      {item.fields.membres.filter(membre => !logo || !!membre.fields.logo).map((membre, i) => <li key={i}
         className={(logo && membre.fields.logo) ? styles.logo : null}
         style={{
           // ...points[i] && {
