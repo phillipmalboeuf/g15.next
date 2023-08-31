@@ -53,10 +53,19 @@
     display: flex;
     justify-content: space-between;
     margin: calc(var(--base) / 2) auto;
+    gap: var(--base);
+
+    @media (max-width: 888px) {
+      flex-direction: column;
+    }
 
     nav {
       display: flex;
       gap: var(--base);
+
+      @media (max-width: 888px) {
+        flex-direction: column;
+      }
     }
   }
 }
