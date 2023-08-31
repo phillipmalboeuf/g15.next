@@ -6,6 +6,7 @@
   --highlight-color: #1F2129;
   --alt-color: #F7D152;
   --lowlight-color: #f8f3e8;
+  --lowlight-color-faded: #{fade-out($color: #f8f3e8, $amount: 0.3)};
   --lowlight-alt-color: #fff;
   --logo-color: #0048AA;
 

@@ -3,6 +3,10 @@
   // color: var(--lowlight-color);
   // background-color: white;
 
+  @media (max-width: 888px) {
+    padding: calc(var(--gap) / 3);
+  }
+
   hr {
     border: none;
     border-top: 1px solid;
