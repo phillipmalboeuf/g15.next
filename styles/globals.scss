@@ -127,10 +127,15 @@ button {
 
 img,
 video,
-audio {
+audio,
+object {
   display: block;
   width: 100%;
   max-width: 100%;
+}
+
+object {
+  height: 66vh;
 }
 
 figure {

@@ -23,6 +23,12 @@ export const Media: FunctionComponent<{
     return <audio src={media.fields.file.url} controls />
   }
 
+  if (media.fields.file.contentType?.startsWith('application/pdf')) {
+    return <>
+      <object data={media.fields.file.url} type="application/pdf" aria-label={media.fields.title}></object><a id={media.sys.id} href={media.fields.file.url} target='_blank'>{media.fields.title}</a> <a href={media.fields.file.url} download aria-describedby={media.sys.id}>Download</a>
+    </>
+  }
+
   return (
     <picture>
       <source srcSet={cdn(media.fields.file.url) + "?auto=compress,format&w=900" + (ar ? `&h=${Math.round(ar * 900)}&fit=${contain ? 'fill' : 'crop'}` : '') + (padding ? `&pad=${padding}` : '')} media="(max-width: 900px)" />
