@@ -1,6 +1,6 @@
 import { createClient } from 'contentful'
 
-const preview = true
+const preview = false
 
 export const contentful = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
