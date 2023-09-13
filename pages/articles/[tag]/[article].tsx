@@ -10,7 +10,7 @@ import { Footer } from '@/components/Footer'
 import { Contenu, renderText } from '@/components/Contenu'
 import { ArticleDate } from '@/components/Articles'
 import { TypeArticleSkeleton } from '@/clients/content_types'
-import { Media } from '@/components/Media'
+import { Media, cdn } from '@/components/Media'
 
 interface Props {
   tag: string
@@ -23,8 +23,13 @@ const Article: FunctionComponent<Props> = ({ title, tag, article, navigation }) 
   return (
     article && <>
       <Head>
-        <title>{tag} – {title}</title>
+        <title>{article.fields.titre} – {tag} – {title}</title>
         <meta name="description" content={article.fields.excerpt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@G15Plus " />
+        <meta name="twitter:title" content={article.fields.titre} />
+        <meta name="twitter:description" content={article.fields.excerpt} />
+        {article.fields.photo?.fields.file && <meta name="twitter:image" content={cdn(article.fields.photo.fields.file.url) + "?auto=compress,format&w=1600&h=900&fit=crop"} />}
       </Head>
       <main className={styles.article}>
         <center><Link href={`/articles/${tag}`}><u>Retour</u></Link></center>

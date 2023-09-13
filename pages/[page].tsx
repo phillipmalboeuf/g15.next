@@ -20,6 +20,10 @@ const Page: FunctionComponent<Props> = ({ title, page, navigation }) => {
       <Head>
         <title>{page.fields.titre} – {title}</title>
         <meta name="description" content={page.fields.description} />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@G15Plus " />
+        <meta name="twitter:title" content={page.fields.titre} />
+        <meta name="twitter:description" content={page.fields.description} />
       </Head>
       <main className={styles.main}>
         <Contenu contenu={page.fields.contenu} />

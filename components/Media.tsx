@@ -1,6 +1,10 @@
 import { Asset, Entry } from 'contentful'
 import { Fragment, FunctionComponent } from 'react'
 
+export function cdn(url: string) {
+  return url.replace(`//images.ctfassets.net/fpl9h4np0egs`, '//g15.imgix.net')
+}
+
 export const Media: FunctionComponent<{
   media: Asset<"WITHOUT_UNRESOLVABLE_LINKS">
   eager?: boolean
@@ -8,10 +12,6 @@ export const Media: FunctionComponent<{
   contain?: boolean
   padding?: number
 }> = ({ media, eager, ar, contain, padding }) => {
-
-  function cdn(url: string) {
-    return url.replace(`//images.ctfassets.net/fpl9h4np0egs`, '//g15.imgix.net')
-  }
 
   if (!media) return
 
