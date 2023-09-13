@@ -19,6 +19,8 @@ const Home: FunctionComponent<Props> = ({ title, page, navigation }) => {
       <Head>
         <title>{title}</title>
         <meta name="description" content={page.fields.description} />
+        <meta name="og:title" content={page.fields.titre} />
+        <meta name="og:description" content={page.fields.description} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:site" content="@G15Plus " />
         <meta name="twitter:title" content={page.fields.titre} />

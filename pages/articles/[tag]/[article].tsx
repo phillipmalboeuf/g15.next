@@ -25,11 +25,16 @@ const Article: FunctionComponent<Props> = ({ title, tag, article, navigation }) 
       <Head>
         <title>{article.fields.titre} – {tag} – {title}</title>
         <meta name="description" content={article.fields.excerpt} />
+        <meta name="og:title" content={article.fields.titre} />
+        <meta name="og:description" content={article.fields.excerpt} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@G15Plus " />
         <meta name="twitter:title" content={article.fields.titre} />
         <meta name="twitter:description" content={article.fields.excerpt} />
-        {article.fields.photo?.fields.file && <meta name="twitter:image" content={"https:" + cdn(article.fields.photo.fields.file.url) + "?auto=compress,format&w=1200&h=630&fit=crop"} />}
+        {article.fields.photo?.fields.file && <>
+          <meta name="og:image" content={"https:" + cdn(article.fields.photo.fields.file.url) + "?auto=compress,format&w=1200&h=630&fit=crop"} />
+          <meta name="twitter:image" content={"https:" + cdn(article.fields.photo.fields.file.url) + "?auto=compress,format&w=1200&h=630&fit=crop"} />
+        </>}
       </Head>
       <main className={styles.article}>
         <center><Link href={`/articles/${tag}`}><u>Retour</u></Link></center>
