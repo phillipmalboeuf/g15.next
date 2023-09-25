@@ -103,6 +103,10 @@ p {
 a {
   text-decoration: none;
   color: inherit;
+
+  &[id] {
+    scroll-margin-top: calc(var(--base) * 3);
+  }
 }
 
 button {
