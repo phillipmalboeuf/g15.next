@@ -13,11 +13,13 @@ export const Propositions: FunctionComponent<{
   const router = useRouter()
 
   return <>
-    {piliers.fields.piliers.filter(pilier => router.query.pilier ? router.query.pilier === pilier.fields.id : true).map(pilier => <ul className={styles.propositions} key={pilier.fields.id} id={pilier.fields.id}>
-      {pilier.fields.propositions?.map(proposition => <li key={proposition.fields.id} id={proposition.fields.id}>
+    {piliers.fields.piliers.filter(pilier => router.query.pilier ? router.query.pilier === pilier.fields.id : true).map((pilier, i) => <ul className={styles.propositions} key={pilier.fields.id} id={pilier.fields.id}>
+      {pilier.fields.propositions?.map((proposition, j) => <li key={proposition.fields.id} id={proposition.fields.id}>
         <details>
           <summary><h3>{proposition.fields.titre}</h3></summary>
-          <article>
+          <article style={{
+            ['--start' as any]: proposition.fields.index
+          }}>
             {renderText(proposition.fields.text)}
           </article>
         </details>

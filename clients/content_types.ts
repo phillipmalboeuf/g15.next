@@ -5,6 +5,7 @@ export interface TypeArticleFields {
     id: EntryFieldTypes.Symbol;
     publishedAt?: EntryFieldTypes.Date;
     tags?: EntryFieldTypes.Array<EntryFieldTypes.Symbol>;
+    auteur?: EntryFieldTypes.Symbol;
     photo?: EntryFieldTypes.AssetLink;
     excerpt?: EntryFieldTypes.Text;
     text?: EntryFieldTypes.RichText;
@@ -45,9 +46,9 @@ export type TypeCards<Modifiers extends ChainModifiers, Locales extends LocaleCo
 export interface TypeHeroFields {
     id?: EntryFieldTypes.Symbol;
     media?: EntryFieldTypes.AssetLink;
-    dark?: EntryFieldTypes.Boolean;
     titre?: EntryFieldTypes.Symbol;
     caption?: EntryFieldTypes.RichText;
+    dark?: EntryFieldTypes.Boolean;
 }
 
 export type TypeHeroSkeleton = EntrySkeletonType<TypeHeroFields, "hero">;
@@ -132,6 +133,7 @@ export interface TypeTextFields {
     background?: EntryFieldTypes.AssetLink;
     dark?: EntryFieldTypes.Boolean;
     links?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeLinkSkeleton>>;
+    index?: EntryFieldTypes.Integer;
 }
 
 export type TypeTextSkeleton = EntrySkeletonType<TypeTextFields, "text">;
