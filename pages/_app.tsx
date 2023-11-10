@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import localFont from '@next/font/local';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import Script from 'next/script';
 
 /* DECLARE CUSTOM FONTS */
 // const editorial = localFont({
@@ -64,25 +65,30 @@ import { Footer } from '@/components/Footer';
 // })
 
 export default function App({ Component, pageProps, router }: AppProps) {
-  return <main role='main'
-    // className={[editorial.variable, montreal.variable].join(' ')}
-  >
-    {pageProps.navigation && <Header nav={pageProps.navigation.header} social={pageProps.navigation.social} />}
-    
-    <motion.div key={router.route}
-      initial="pageInitial" 
-      animate="pageAnimate" 
-      variants={{
-        pageInitial: {
-          opacity: 0
-        },
-        pageAnimate: {
-          opacity: 1
-        },
-    }}>
-      <Component {...pageProps} />
-    </motion.div>
-    
-    {pageProps.navigation && <Footer footer={pageProps.navigation.footer} social={pageProps.navigation.social} legal={pageProps.navigation.legal} />}
-  </main>
+  return <>
+    <main role='main'>
+      {pageProps.navigation && <Header nav={pageProps.navigation.header} social={pageProps.navigation.social} />}
+      
+      <motion.div key={router.route}
+        initial="pageInitial" 
+        animate="pageAnimate" 
+        variants={{
+          pageInitial: {
+            opacity: 0
+          },
+          pageAnimate: {
+            opacity: 1
+          },
+      }}>
+        <Component {...pageProps} />
+      </motion.div>
+      
+      {pageProps.navigation && <Footer footer={pageProps.navigation.footer} social={pageProps.navigation.social} legal={pageProps.navigation.legal} />}
+    </main>
+
+    <div id="philscookies"></div>
+    <Script src="https://philscookies.vercel.app/index.js" onReady={() => window.philscookies.config({
+      highlight: '#0048AA'
+    })} />
+  </>
 }
