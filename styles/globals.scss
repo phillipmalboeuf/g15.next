@@ -145,3 +145,41 @@ object {
 figure {
   margin: 0 auto var(--base);
 }
+
+table {
+  border: 1px solid;
+  border-radius: 1em;
+  -webkit-border-horizontal-spacing: 0;
+  -webkit-border-vertical-spacing: 0;
+
+  td,
+  th {
+    text-align: left;
+    padding: calc(var(--gap) / 4);
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  tr {
+    background-color: #{fade-out($color: #968A84, $amount: 0.9)};
+
+    &:nth-child(2n - 1) {
+      background-color: #{fade-out($color: #968A84, $amount: 0.95)};
+    }
+
+    &:last-child {
+      td,
+      th {
+          border-bottom: none;
+      }
+    }
+  }
+}
